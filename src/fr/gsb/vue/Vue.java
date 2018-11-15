@@ -1,5 +1,11 @@
 package fr.gsb.vue;
 
-public class Vue {
+import javax.swing.JFrame;
+
+public class Vue extends JFrame{
+
 	// wshalor
+
+
+
 }
