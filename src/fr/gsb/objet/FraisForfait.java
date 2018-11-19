@@ -9,7 +9,7 @@ public class FraisForfait {
 	private int montant;
 
 	//-------------------------------------------------------------------
-	//--------------------début des methode GET-------------------------------
+	//--------------------début des methodes GET-------------------------------
 	/**
 	 * methode qui permet de retourner l'id de la classe FraisForfait 
 	 */
@@ -34,7 +34,7 @@ public class FraisForfait {
 	}
 
 	//-------------------------------------------------------------------
-	//--------------------début des methode SET-------------------------------
+	//--------------------début des methodes SET-------------------------------
 	/**
 	 * methode qui permet de changer un Id de la classe FraisForfait 
 	 *
@@ -64,9 +64,10 @@ public class FraisForfait {
 		this.montant=unMontant;
 	}
 
-
+	//-------------------------------------------------------------------
+	//--------------------constructeur-------------------------------
 	/**
-	 * constructeur de la classe
+	 * constructeur de la classe FraisForfait
 	 *
 	 * @param unId mettre un Libelle qui est une chaine de charactère
 	 * @param unLibelle mettre un Libelle qui est une chaine de charactère
