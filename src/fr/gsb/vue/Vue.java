@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import fr.gsb.objet.*;;
 
+@SuppressWarnings("serial")
 public class Vue extends JFrame{
 	
 	private VueConnexion panel;

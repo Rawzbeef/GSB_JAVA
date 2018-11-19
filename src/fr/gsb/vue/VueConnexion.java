@@ -7,6 +7,7 @@ import javax.swing.*;
 import fr.gsb.controleur.action.*;
 import fr.gsb.objet.*;
 
+@SuppressWarnings("serial")
 public class VueConnexion extends JPanel {
 	
 	private JLabel jlIdentifiant;
