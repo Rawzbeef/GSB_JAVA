@@ -16,7 +16,7 @@ public class VueMessage extends JPanel {
 	 * Constructeur de la vue message
 	 */
 	public VueMessage() {
-		this.text = "<html>";
+		this.setText("<html>");
 	}
 
 	/**
@@ -27,8 +27,8 @@ public class VueMessage extends JPanel {
 	public void addLabelErreur(String string) {
 		this.removeAll();
 		this.revalidate();
-		this.text +=  string + "<br>";
-		JLabel label = new JLabel(this.text + "</html>");
+		this.setText(this.getText() + string + "<br>");
+		JLabel label = new JLabel(this.getText() + "</html>");
 		this.setBackground(new Color(250, 115, 115));
 		this.add(label);
 	}
@@ -41,8 +41,8 @@ public class VueMessage extends JPanel {
 	public void addLabelValider(String string) {
 		this.removeAll();
 		this.revalidate();
-		this.text +=  string + "<br>";
-		JLabel label = new JLabel(this.text + "</html>");
+		this.setText(this.getText() + string + "<br>");
+		JLabel label = new JLabel(this.getText() + "</html>");
 		this.setBackground(new Color(40, 175, 95));
 		this.add(label);
 	}
@@ -52,8 +52,16 @@ public class VueMessage extends JPanel {
 	 */
 	public void reset() {
 		this.removeAll();
-		this.text = "<html>";
+		this.setText("<html>");
 		this.setBackground(new Color(0, 0, 0, 0));
 		this.revalidate();
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	private void setText(String text) {
+		this.text = text;
 	}
 }
