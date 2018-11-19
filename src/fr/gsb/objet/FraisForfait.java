@@ -1,4 +1,3 @@
-//class non fini et a completer
 package fr.gsb.objet;
 
 public class FraisForfait {
