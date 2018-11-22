@@ -17,7 +17,7 @@ public class Vue extends JFrame{
 		this.setSize(800, 600);
 		this.setResizable(false);	
 		
-		panel = new VueConnexion(gsb, this, vueMsg);
+		this.panel = new VueConnexion(gsb, this, vueMsg);
 		
 		this.getContentPane().add(panel);
 		
