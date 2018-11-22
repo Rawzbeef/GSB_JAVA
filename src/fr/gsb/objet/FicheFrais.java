@@ -1,106 +1,102 @@
 package fr.gsb.objet;
 
 public class FicheFrais {
-	//attribut priver
+	
+	// Attributs privés
 	private String mois;
 	private int nbJustificatifs;
 	private double montantValide;
 	private Date dateModif;
 
-
-
-
-
-	//-------------------------------------------------------------------
-	//--------------------constructeur-------------------------------
+	
+	// Constructeur
 	/**
-	 * constructeur de la classe FicheFrais
+	 * Constructeur de la classe FicheFrais
 	 *
-	 * @param unmois mettre un mois qui est une chaine de charactère
-	 * @param unbJustificatifs mettre un bJustificatifs qui est un entier
-	 * @param unmontantValide mettre un montantValide qui est un nombre avec virgule
-	 * @param unedateModif mettre une dateModif qui est la date d'aujourd'huit
+	 * @param unMois mettre un mois qui est une chaine de charactère
+	 * @param unNbJustificatifs mettre un nombre de justificatifs qui est un entier
+	 * @param unMontantValide mettre un montant valide qui est un nombre décimal
+	 * @param uneDateModif mettre une date qui est la date d'aujourd'hui
 	 */ 
-	public FicheFrais(String unMois, int unNbJustificatifs, double unMontantValide, Date uneDateModif){
-		this.mois = unMois;
+	public FicheFrais(String unMois, int unNbJustificatifs, double unMontantValide, Date uneDateModif) {
+		this.mois = unMois; // Format aaaamm
 		this.nbJustificatifs = unNbJustificatifs;
 		this.montantValide = unMontantValide;
 		this.dateModif = uneDateModif;
 	}
 
-	//-------------------------------------------------------------------
-	//--------------------début des methodes GET-------------------------------
+	// Méthodes
+	// GET
 
 	/**
-	 * methode qui permet de retourner le mois de la classe FicheFrais 
+	 * Méthode qui permet de retourner le mois 
 	 */
-	public String getMois(){
+	public String getMois() {
 		return this.mois;
 	}
 
 
 	/**
-	 * methode qui permet de retourner le nombre de Justificatifs de la classe FicheFrais 
+	 * Méthode qui permet de retourner le nombre de justificatifs 
 	 */
-	public int getNbJustificatifs(){
+	public int getNbJustificatifs() {
 		return this.nbJustificatifs;
 	}
 
 
 	/**
-	 * methode qui permet de retourner le montantValide de la classe FicheFrais 
+	 * Méthode qui permet de retourner le montant valide de la fiche 
 	 */
-	public double getMontantValide(){
+	public double getMontantValide() {
 		return this.montantValide;
 	}
 
 
 	/**
-	 * methode qui permet de retourner la dateModif de la classe FicheFrais
+	 * Méthode qui permet de retourner la dateModif
 	 */
-	public Date getDateModif(){
+	public Date getDateModif() {
 		return this.dateModif;
 	}
 
-	//-------------------------------------------------------------------
-	//--------------------début des methodes SET-------------------------------
+	// SET
 
 	/**
-	 * methode qui permet de changer un mois de la classe FicheFrais 
+	 * Méthode qui permet de changer un mois de la classe FicheFrais 
 	 *
-	 * @param unMois mettre un mois qui est une chaine de charactère et espacer par "-" apres chaque chiffre
+	 * @param unMois mettre un mois qui est une chaine de caractères et de format aaaamm
 	 */ 
-	public void setMois(String unMois){
+	public void setMois(String unMois) {
 		this.mois = unMois;
 	}
 
 
 	/**
-	 * methode qui permet de changer un nombre de Justificatifs de la classe FicheFrais
+	 * Méthode qui permet de changer le nombre de justificatifs de la classe FicheFrais
 	 *
 	 * @param unNbJustificatifs mettre un nbJustificatifs qui est un entier
 	 */ 
-	public void setNbJustificatifs(int unNbJustificatifs){
+	public void setNbJustificatifs(int unNbJustificatifs) {
 		this.nbJustificatifs = unNbJustificatifs;
 	}
 
 
 	/**
-	 * methode qui permet de changer un montantValide de la classe FicheFrais 
+	 * Méthode qui permet de changer le montant valide de la classe FicheFrais 
 	 *
-	 * @param unMontantValide mettre un montantValide qui est un chiffre avec une virgule
+	 * @param unMontantValide mettre un montantValide qui est un nombre décimal
 	 */ 
-	public void setMontantValide(double unMontantValide){
+	public void setMontantValide(double unMontantValide) {
 		this.montantValide = unMontantValide;
 	}
 
 
 	/**
-	 * methode qui permet de changer une dateModif de la classe FicheFrais 
+	 * Méthode qui permet de changer une dateModif de la classe FicheFrais 
 	 *
-	 * @param uneDate mettre un dateModif qui est provient de la classe date
+	 * @param uneDate mettre une dateModif de type Date
 	 */ 
-	public void setDateModif(Date uneDate){
+	public void setDateModif(Date uneDate) {
 		this.dateModif = uneDate;
 	}
 }
