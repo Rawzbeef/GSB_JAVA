@@ -32,7 +32,7 @@ public class ActionConnexion implements ActionListener, KeyListener {
 		String mdp = Modele.cryptageMd5(jtfMdp.getText());
 		if(ModeleBDD.connexionComptable(jtfIdentifiant.getText(), mdp)) {
 			vue.getContentPane().removeAll();
-			//vue.setJMenuBar(new VueMenu(aero, vue, vueInfo));
+			vue.setJMenuBar(new VueMenu(gsb, vue, vueMsg));
 			vue.getContentPane().add(new JPanel()).revalidate();
 			System.out.println("connecté");
 		}
