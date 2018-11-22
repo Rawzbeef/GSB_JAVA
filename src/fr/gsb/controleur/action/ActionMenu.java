@@ -13,18 +13,24 @@ public class ActionMenu implements ActionListener {
 	private Vue vue;
 	private VueMessage vueMsg;
 	private Gsb gsb;
+	private String nomBouton;
 
 	
-	public ActionMenu(Gsb gsb, Vue vue, VueMessage vueMsg, JTextField jtfIdentifiant, JTextField jtfMdp) {
+	public ActionMenu(Gsb gsb, Vue vue, VueMessage vueMsg, String nomBouton) {
 		this.gsb = gsb;
 		this.vue = vue;
 		this.vueMsg = vueMsg;
+		this.nomBouton = nomBouton;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		vueMsg.reset();
-		vue.getContentPane().removeAll();
-		vue.getContentPane().add(new VueAfficherFrais()).revalidate();
+		switch(this.nomBouton) {
+		case "AfficherFrais":
+			vueMsg.reset();
+			vue.getContentPane().removeAll();
+			vue.getContentPane().add(new VueAfficherFrais()).revalidate();
+			break;
+		}
 	}
 }

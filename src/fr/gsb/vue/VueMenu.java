@@ -4,6 +4,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import fr.gsb.controleur.action.ActionMenu;
 import fr.gsb.objet.Gsb;
 
 @SuppressWarnings("serial")
@@ -17,6 +18,7 @@ public class VueMenu extends JMenuBar {
 		this.jmComptable = new JMenu("Comptable");
 		
 		this.jmiAfficherForfait = new JMenuItem("Affichage des forfaits");
+		this.jmiAfficherForfait.addActionListener(new ActionMenu(gsb, vue, vueMessage, "AfficherForfait"));
 		
 		this.jmComptable.add(this.jmiAfficherForfait);
 		
