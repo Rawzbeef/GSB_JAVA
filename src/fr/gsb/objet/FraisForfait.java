@@ -2,57 +2,56 @@ package fr.gsb.objet;
 
 public class FraisForfait {
 
-	//attribut priver
+	// Attributs privés
 	private String id;
 	private String libelle;
-	private int montant;
+	private double montant;
 
-	//-------------------------------------------------------------------
-	//--------------------constructeur-------------------------------
+	// Constructeur
 	/**
-	 * constructeur de la classe FraisForfait
+	 * Constructeur de la classe FraisForfait
 	 *
-	 * @param unId mettre un Libelle qui est une chaine de charactère
-	 * @param unLibelle mettre un Libelle qui est une chaine de charactère
-	 * @param unMontant mettre un Libelle qui est un entier
+	 * @param unId identifiant qui est une chaine de caractères
+	 * @param unLibelle libelle qui est une chaine de caractères
+	 * @param unMontant montant qui est un nombre décimal
 	 */ 
-	public FraisForfait(String unId, String unLibelle, int unMontant){
-		this.id=unId;
-		this.libelle=unLibelle;
-		this.montant=unMontant;
+	public FraisForfait(String unId, String unLibelle, double unMontant){
+		this.id = unId;
+		this.libelle = unLibelle;
+		this.montant = unMontant;
 	}
 
-	//-------------------------------------------------------------------
-	//--------------------début des methodes GET-------------------------------
+	// Méthodes
+	// GET
 	/**
-	 * methode qui permet de retourner l'id de la classe FraisForfait 
+	 * Méthode qui permet de retourner l'id 
 	 */
-	public String getId(){
+	public String getId() {
 		return this.id;
 	}
 
 
 	/**
-	 * methode qui permet de retourner le libelle de la classe FraisForfait 
+	 * Méthode qui permet de retourner le libellé 
 	 */
-	public String getLibelle(){
+	public String getLibelle() {
 		return this.libelle;
 	}
 
 
 	/**
-	 * methode qui permet de retourner le montant de la classe FraisForfait
+	 * Méthode qui permet de retourner le montant de la fiche
 	 */
-	public int getMontant(){
+	public double getMontant() {
 		return this.montant;
 	}
 
-	//-------------------------------------------------------------------
-	//--------------------début des methodes SET-------------------------------
+	// SET
+	
 	/**
-	 * methode qui permet de changer un Id de la classe FraisForfait 
+	 * Méthode qui permet de changer l'Id 
 	 *
-	 * @param unId mettre un Id qui est une chaine de charactère
+	 * @param unId mettre un Id qui est une chaine de caractères
 	 */
 	public void setId(String unId){
 		this.id = unId;
@@ -60,9 +59,9 @@ public class FraisForfait {
 
 
 	/**
-	 * methode qui permet de changer un libelle d'une classe FraisForfait 
+	 * Méthode qui permet de changer un libelle d'une classe FraisForfait 
 	 *
-	 * @param unLibelle mettre un Libelle qui est une chaine de charactère
+	 * @param unLibelle mettre un Libelle qui est une chaine de caractères
 	 */
 	public void setLibelle(String unLibelle){
 		this.libelle = unLibelle;
@@ -70,11 +69,11 @@ public class FraisForfait {
 
 
 	/**
-	 * methode qui permet de changer un montant d'une classe FraisForfait
+	 * Méthode qui permet de changer un montant d'une classe FraisForfait
 	 *
-	 * @param unMontant mettre un Libelle qui est un entier
+	 * @param unMontant mettre un Libelle qui est un nombre décimal
 	 */
-	public void setMontant(int unMontant){
+	public void setMontant(double unMontant){
 		this.montant = unMontant;
 	}
 }

@@ -7,6 +7,7 @@ public class FicheFrais {
 	private int nbJustificatifs;
 	private double montantValide;
 	private Date dateModif;
+	private String etat;
 
 	
 	// Constructeur
@@ -17,12 +18,14 @@ public class FicheFrais {
 	 * @param unNbJustificatifs mettre un nombre de justificatifs qui est un entier
 	 * @param unMontantValide mettre un montant valide qui est un nombre décimal
 	 * @param uneDateModif mettre une date qui est la date d'aujourd'hui
+	 * @param unEtat mettre l'état de la fiche de frais qui se compose de deux caractères
 	 */ 
-	public FicheFrais(String unMois, int unNbJustificatifs, double unMontantValide, Date uneDateModif) {
+	public FicheFrais(String unMois, int unNbJustificatifs, double unMontantValide, Date uneDateModif, String unEtat) {
 		this.mois = unMois; // Format aaaamm
 		this.nbJustificatifs = unNbJustificatifs;
 		this.montantValide = unMontantValide;
 		this.dateModif = uneDateModif;
+		this.etat = unEtat;
 	}
 
 	// Méthodes
@@ -57,6 +60,13 @@ public class FicheFrais {
 	 */
 	public Date getDateModif() {
 		return this.dateModif;
+	}
+	
+	/**
+	 * Méthode qui retourne l'état de la fiche de frais
+	 */
+	public String getEtat() {
+		return this.etat;
 	}
 
 	// SET
