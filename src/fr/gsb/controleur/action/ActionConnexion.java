@@ -33,7 +33,7 @@ public class ActionConnexion implements ActionListener {
 		if(ModeleBDD.connexionComptable(jtfIdentifiant.getText(), mdp)) {
 			vue.getContentPane().removeAll();
 			vue.setJMenuBar(new VueMenu(gsb, vue, vueMsg));
-			vue.getContentPane().add(new JPanel()).revalidate();
+			vue.getContentPane().add(new VueAccueil()).revalidate();
 			System.out.println("connecté");
 		}
 		else {
