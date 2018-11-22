@@ -2,6 +2,13 @@
 package fr.gsb.vue;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.ItemSelectable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.*;
 /*
 import utiliser:
@@ -9,43 +16,51 @@ import utiliser:
 -import javax.swing.JPanel;
 -import javax.swing.JScrollPane;
 -import javax.swing.JTable;
-*/
+ */
 @SuppressWarnings("serial")
 
-public class VueAfficherFrais extends JPanel {
-	private JScrollPane scroll;
-	private JTable table;
-	private String[] entete;
-	private Object [][] donnees;
-	private int i;
-	private JComboBox listetest;
+public class VueAfficherFrais extends JPanel implements ItemListener{
+	//JComboBox
+	private JComboBox listeVisiteur;
+	private JComboBox listeMois;
+	//JPanel
+	private JPanel JPNorth;
+	private JPanel JPdown;
+	
+	// mettre private ArrayList<Visiteur> LesVisiteurs
+	
 	public VueAfficherFrais(){
 		this.setLayout(new BorderLayout());
-	     listetest = new JComboBox();
-	     listetest.addItem("super");
-	     
-		//Entête du tableau de contacts
-		/*entete = new String[3]; //new string[nb entête]
-		entete[0] = "NumAvion";
-		entete[1] = "NomAvion";
-		entete[2] = "NbPlace";
+		JPNorth = new JPanel();
 		
-		i = 0;
+		//listeVisiteur
+		listeVisiteur = new JComboBox();
+		String[] tab = {"Option 1", "Option 2", "Option 3", "…"};
+		listeVisiteur = new JComboBox(tab);
 		
-		//Récupération des contacts présents dans la liste des contacts
-		donnees = new Object[liste.size()][3];
-		for () {
-			donnees[i][0] =;
-			donnees[i][1] = ;
-			donnees[i][2] = ;
-			i++;
-		}*/
+		ItemListener itemListener = new ItemListener() {
+		      public void itemStateChanged(ItemEvent itemEvent) {
+		        System.out.println("Item: " + itemEvent.getItem());
+		      }
+		    };
+		    listeVisiteur.addItemListener(itemListener);
+		    listeVisiteur.setPreferredSize(new Dimension(100,20));
+			JPNorth.add(this.listeVisiteur);
 		
-		//Mise en place du panneau
-		/*table = new JTable(donnees, entete);
+		//listMois
+		listeMois = new JComboBox();
+		String[] tab2 = {"Option 1", "Option 2", "Option 3", "…"};
+		listeMois = new JComboBox(tab);
+		listeMois.setPreferredSize(new Dimension(100,20));
+		JPNorth.add(this.listeMois);
 		
-		scroll = new JScrollPane(table);
 		
-        this.add(scroll, BorderLayout.CENTER);*/
+		//ajout dans le PanelPrinciapl
+		this.add(JPNorth, BorderLayout.NORTH);
+	}
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

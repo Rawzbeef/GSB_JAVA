@@ -28,7 +28,7 @@ USE `gsbv2`;
 -- Structure de la table `FraisForfait`
 --
 
-CREATE TABLE IF NOT EXISTS `FraisForfait` (
+CREATE TABLE IF NOT EXISTS `gsb_FraisForfait` (
   `id` char(3) NOT NULL,
   `libelle` char(20) DEFAULT NULL,
   `montant` decimal(5,2) DEFAULT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `FraisForfait` (
 -- Structure de la table `Etat`
 --
 
-CREATE TABLE IF NOT EXISTS `Etat` (
+CREATE TABLE IF NOT EXISTS `gsb_Etat` (
   `id` char(2) NOT NULL,
   `libelle` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `Etat` (
 -- Structure de la table `Visiteur`
 --
 
-CREATE TABLE IF NOT EXISTS `Employe` (
+CREATE TABLE IF NOT EXISTS `gsb_Employe` (
   `id` char(4) NOT NULL,
   `nom` char(30) DEFAULT NULL,
   `prenom` char(30)  DEFAULT NULL, 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `Employe` (
 -- Structure de la table `FicheFrais`
 --
 
-CREATE TABLE IF NOT EXISTS `fichefrais` (
+CREATE TABLE IF NOT EXISTS `gsb_fichefrais` (
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `nbJustificatifs` int(11) DEFAULT NULL,
@@ -84,8 +84,8 @@ CREATE TABLE IF NOT EXISTS `fichefrais` (
   `dateModif` date DEFAULT NULL,
   `idEtat` char(2) DEFAULT 'CR',
   PRIMARY KEY (`idVisiteur`,`mois`),
-  FOREIGN KEY (`idEtat`) REFERENCES Etat(`id`),
-  FOREIGN KEY (`idVisiteur`) REFERENCES Employe(`id`)
+  FOREIGN KEY (`idEtat`) REFERENCES gsb_Etat(`id`),
+  FOREIGN KEY (`idVisiteur`) REFERENCES gsb_Employe(`id`)
 ) ENGINE=InnoDB;
 
 
@@ -95,14 +95,14 @@ CREATE TABLE IF NOT EXISTS `fichefrais` (
 -- Structure de la table `LigneFraisForfait`
 --
 
-CREATE TABLE IF NOT EXISTS `LigneFraisForfait` (
+CREATE TABLE IF NOT EXISTS `gsb_LigneFraisForfait` (
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `idFraisForfait` char(3) NOT NULL,
   `quantite` int(11) DEFAULT NULL,
   PRIMARY KEY (`idVisiteur`,`mois`,`idFraisForfait`),
-  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES FicheFrais(`idVisiteur`, `mois`),
-  FOREIGN KEY (`idFraisForfait`) REFERENCES FraisForfait(`id`)
+  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES gsb_FicheFrais(`idVisiteur`, `mois`),
+  FOREIGN KEY (`idFraisForfait`) REFERENCES gsb_FraisForfait(`id`)
 ) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `LigneFraisForfait` (
 -- Structure de la table `LigneFraisHorsForfait`
 --
 
-CREATE TABLE IF NOT EXISTS `LigneFraisHorsForfait` (
+CREATE TABLE IF NOT EXISTS `gsb_LigneFraisHorsForfait` (
   `id` int(11) NOT NULL auto_increment,
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
@@ -119,5 +119,5 @@ CREATE TABLE IF NOT EXISTS `LigneFraisHorsForfait` (
   `date` date DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES FicheFrais(`idVisiteur`, `mois`)
+  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES gsb_FicheFrais(`idVisiteur`, `mois`)
 ) ENGINE=InnoDB;
