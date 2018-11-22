@@ -40,8 +40,8 @@ public class VueConnexion extends JPanel {
 		this.jbConnexion = new JButton("Connexion");
 		
 		ActionConnexion actionConnexion = new ActionConnexion(this.gsb, this.vue, this.vueMsg, this.jtfIdentifiant, this.jtfMdp);
-		this.jtfIdentifiant.addKeyListener(actionConnexion);
-		this.jtfMdp.addKeyListener(actionConnexion);
+		//this.jtfIdentifiant.addKeyListener(actionConnexion);
+		//this.jtfMdp.addKeyListener(actionConnexion);
 		this.jbConnexion.addActionListener(actionConnexion);
 		
 		this.setLayout(new GridBagLayout());

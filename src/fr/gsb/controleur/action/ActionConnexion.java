@@ -8,7 +8,7 @@ import fr.gsb.vue.*;
 import fr.gsb.objet.*;
 import fr.gsb.modele.*;
 
-public class ActionConnexion implements ActionListener, KeyListener {
+public class ActionConnexion implements ActionListener {
 	
 	private Vue vue;
 	private VueMessage vueMsg;
@@ -41,7 +41,8 @@ public class ActionConnexion implements ActionListener, KeyListener {
 			vue.getContentPane().revalidate();
 		}
 	}
-
+	
+	/*
 	@Override
 	public void keyPressed(KeyEvent event) {
 		if(event.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -68,5 +69,6 @@ public class ActionConnexion implements ActionListener, KeyListener {
 	public void keyTyped(KeyEvent arg0) {
 		
 	}
+	*/
 
 }
