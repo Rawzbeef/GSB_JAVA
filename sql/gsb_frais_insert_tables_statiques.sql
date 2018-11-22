@@ -4,7 +4,7 @@
 
 USE `gsbv2`;
 
-INSERT INTO `FraisForfait` (`id`, `libelle`, `montant`) VALUES
+INSERT INTO `gsb_FraisForfait` (`id`, `libelle`, `montant`) VALUES
 ('ETP', 'Forfait Etape', 110.00),
 ('KM', 'Frais Kilométrique', 0.62),
 ('NUI', 'Nuitée Hôtel', 80.00),
@@ -17,7 +17,7 @@ INSERT INTO `FraisForfait` (`id`, `libelle`, `montant`) VALUES
 -- Contenu de la table `Etat`
 --
 
-INSERT INTO `Etat` (`id`, `libelle`) VALUES
+INSERT INTO `gsb_Etat` (`id`, `libelle`) VALUES
 ('RB', 'Remboursée'),
 ('CL', 'Saisie clôturée'),
 ('CR', 'Fiche créée, saisie en cours'),
@@ -29,7 +29,7 @@ INSERT INTO `Etat` (`id`, `libelle`) VALUES
 -- Contenu de la table `Visiteur`
 --
 
-INSERT INTO `employe` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`) VALUES
+INSERT INTO `gsb_employe` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`) VALUES
 ('a131', 'Villechalane', 'Louis', 'lvillachane', '92eb980737f1854076b2e34933286d8e', '8 rue des Charmes', '46000', 'Cahors', '2005-12-21'),
 ('a17', 'Andre', 'David', 'dandre', '37f2381c9a729782c38410b1ea5b8191', '1 rue Petit', '46200', 'Lalbenque', '1998-11-23'),
 ('a55', 'Bedos', 'Christian', 'cbedos', '26ec3c585ee973005c2744742d920dc3', '1 rue Peranud', '46250', 'Montcuq', '1995-01-12'),
@@ -63,4 +63,17 @@ INSERT INTO `employe` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `
 --
 -- Modification d'un visiteur en comptable
 --
-UPDATE  `gsbv2`.`employe` SET  `statut` =  'Comptable' WHERE  `employe`.`id` =  'b34';
+UPDATE `gsb_employe` SET  `statut` =  'Comptable' WHERE  `gsb_employe`.`id` =  'b34';
+
+--
+-- Ajout de comptables
+--
+
+INSERT INTO `gsb_employe` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`) VALUES
+('g1', 'Lys', 'Jean-Luc', 'jllys', '54072f485cdb7897ebbcaf7525139561', '1 square', '77127', 'Lieusaint', '2005-11-30'),
+('g2', 'Gaspar', 'Vincent', 'vgaspar', '81dc9bdb52d04dc20036dbd8313ed055', '6 rue', '91590', 'La Ferté', '1998-11-23'),
+('g0', 'Wone', 'Alexis', 'awone', '81dc9bdb52d04dc20036dbd8313ed055', '1 rue Peranud', '46250', 'Montcuq', '2013-01-12');
+
+UPDATE `gsb_employe` SET  `statut` =  'Comptable' WHERE  `gsb_employe`.`id` =  'g1';
+UPDATE `gsb_employe` SET  `statut` =  'Comptable' WHERE  `gsb_employe`.`id` =  'g2';
+UPDATE `gsb_employe` SET  `statut` =  'Comptable' WHERE  `gsb_employe`.`id` =  'g0';

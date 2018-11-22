@@ -34,7 +34,6 @@ public class ActionConnexion implements ActionListener {
 			vue.getContentPane().removeAll();
 			vue.setJMenuBar(new VueMenu(gsb, vue, vueMsg));
 			vue.getContentPane().add(new VueAccueil()).revalidate();
-			System.out.println("connecté");
 		}
 		else {
 			vueMsg.addLabelErreur("Les identifiants sont incorrects.");
