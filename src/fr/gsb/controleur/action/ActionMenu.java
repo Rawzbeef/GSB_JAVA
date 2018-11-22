@@ -26,7 +26,7 @@ public class ActionMenu implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(this.nomBouton) {
-		case "AfficherFrais":
+		case "AfficherForfait":
 			vueMsg.reset();
 			vue.getContentPane().removeAll();
 			vue.getContentPane().add(new VueAfficherFrais()).revalidate();
