@@ -16,7 +16,7 @@ public class FraisForfait {
 	 * @param unLibelle mettre un Libelle qui est une chaine de charactère
 	 * @param unMontant mettre un Libelle qui est un entier
 	 */ 
-	public FraisForfait(String unId,String unLibelle,int unMontant){
+	public FraisForfait(String unId, String unLibelle, int unMontant){
 		this.id=unId;
 		this.libelle=unLibelle;
 		this.montant=unMontant;
@@ -28,7 +28,7 @@ public class FraisForfait {
 	 * methode qui permet de retourner l'id de la classe FraisForfait 
 	 */
 	public String getId(){
-		return id;
+		return this.id;
 	}
 
 
@@ -36,7 +36,7 @@ public class FraisForfait {
 	 * methode qui permet de retourner le libelle de la classe FraisForfait 
 	 */
 	public String getLibelle(){
-		return libelle;
+		return this.libelle;
 	}
 
 
@@ -44,7 +44,7 @@ public class FraisForfait {
 	 * methode qui permet de retourner le montant de la classe FraisForfait
 	 */
 	public int getMontant(){
-		return montant;
+		return this.montant;
 	}
 
 	//-------------------------------------------------------------------
@@ -55,7 +55,7 @@ public class FraisForfait {
 	 * @param unId mettre un Id qui est une chaine de charactère
 	 */
 	public void setId(String unId){
-		this.id=unId;
+		this.id = unId;
 	}
 
 
@@ -65,7 +65,7 @@ public class FraisForfait {
 	 * @param unLibelle mettre un Libelle qui est une chaine de charactère
 	 */
 	public void setLibelle(String unLibelle){
-		this.libelle=unLibelle;
+		this.libelle = unLibelle;
 	}
 
 
@@ -75,7 +75,7 @@ public class FraisForfait {
 	 * @param unMontant mettre un Libelle qui est un entier
 	 */
 	public void setMontant(int unMontant){
-		this.montant=unMontant;
+		this.montant = unMontant;
 	}
 }
 
