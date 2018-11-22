@@ -2,6 +2,8 @@
 package fr.gsb.vue;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.*;
 /*
 import utiliser:
@@ -9,43 +11,23 @@ import utiliser:
 -import javax.swing.JPanel;
 -import javax.swing.JScrollPane;
 -import javax.swing.JTable;
-*/
+ */
 @SuppressWarnings("serial")
 
 public class VueAfficherFrais extends JPanel {
-	private JScrollPane scroll;
-	private JTable table;
-	private String[] entete;
-	private Object [][] donnees;
-	private int i;
-	private JComboBox listetest;
+	private JComboBox listeVisiteur;
+	private JPanel North;
+	private JPanel middle;
+	private JPanel down;
+
 	public VueAfficherFrais(){
 		this.setLayout(new BorderLayout());
-	     listetest = new JComboBox();
-	     listetest.addItem("super");
-	     
-		//Entête du tableau de contacts
-		/*entete = new String[3]; //new string[nb entête]
-		entete[0] = "NumAvion";
-		entete[1] = "NomAvion";
-		entete[2] = "NbPlace";
+		North = new JPanel();
+		listeVisiteur = new JComboBox();
+		String[] tab = {"Option 1", "Option 2", "Option 3", "…"};
+		listeVisiteur = new JComboBox(tab);
+		listeVisiteur.setPreferredSize(new Dimension(100,20));
+		North.add(this.listeVisiteur, BorderLayout.NORTH);
 		
-		i = 0;
-		
-		//Récupération des contacts présents dans la liste des contacts
-		donnees = new Object[liste.size()][3];
-		for () {
-			donnees[i][0] =;
-			donnees[i][1] = ;
-			donnees[i][2] = ;
-			i++;
-		}*/
-		
-		//Mise en place du panneau
-		/*table = new JTable(donnees, entete);
-		
-		scroll = new JScrollPane(table);
-		
-        this.add(scroll, BorderLayout.CENTER);*/
 	}
 }
