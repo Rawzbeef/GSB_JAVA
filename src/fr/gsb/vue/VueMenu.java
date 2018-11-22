@@ -11,16 +11,16 @@ import fr.gsb.objet.Gsb;
 public class VueMenu extends JMenuBar {
 	
 	private JMenu jmComptable;
-	private JMenuItem jmiAfficherForfait;
+	private JMenuItem jmiAfficherFrais;
 
 	public VueMenu(Gsb gsb, Vue vue, VueMessage vueMessage) {
 		//Comptable
 		this.jmComptable = new JMenu("Comptable");
 		
-		this.jmiAfficherForfait = new JMenuItem("Affichage des forfaits");
-		this.jmiAfficherForfait.addActionListener(new ActionMenu(gsb, vue, vueMessage, "AfficherForfait"));
+		this.jmiAfficherFrais = new JMenuItem("Affichage des frais");
+		this.jmiAfficherFrais.addActionListener(new ActionMenu(gsb, vue, vueMessage, "AfficherFrais"));
 		
-		this.jmComptable.add(this.jmiAfficherForfait);
+		this.jmComptable.add(this.jmiAfficherFrais);
 		
 		this.add(this.jmComptable);
 	}
