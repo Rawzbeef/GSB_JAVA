@@ -1,6 +1,7 @@
 package fr.gsb.modele;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ModeleBDD {
 	
@@ -9,6 +10,7 @@ public class ModeleBDD {
 	private static Statement st;
 	private static PreparedStatement pst;
 	private static ResultSet rs;
+	private static ArrayList<String> lesEmployer;
 	
 	
 	// Méthodes statiques
@@ -68,4 +70,17 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return trouver;
 	}
+	
+	
+	/**
+	 * permet de renvoyer une liste de Visiteur.
+	 * 
+	 * @return true si les identifiants sont corrects
+	 */
+	//a continuer de faire
+	/*public static ArrayList<String> getVisiteur(){
+		
+		return null;
+		
+	}*/
 }
