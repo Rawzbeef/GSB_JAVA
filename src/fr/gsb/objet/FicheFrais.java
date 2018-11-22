@@ -1,28 +1,31 @@
 package fr.gsb.objet;
 
 public class FicheFrais {
-	
-	// Attributs privés
+	//attribut priver
 	private String mois;
 	private int nbJustificatifs;
 	private double montantValide;
-	private String dateModif;
+	private Date dateModif;
 
 
-	// Constructeur
+
+
+
+	//-------------------------------------------------------------------
+	//--------------------constructeur-------------------------------
 	/**
-	 * Constructeur de la classe FicheFrais
+	 * constructeur de la classe FicheFrais
 	 *
-	 * @param unMois mettre un mois qui est une chaine de charactère
+	 * @param unmois mettre un mois qui est une chaine de charactère
 	 * @param unbJustificatifs mettre un bJustificatifs qui est un entier
 	 * @param unmontantValide mettre un montantValide qui est un nombre avec virgule
 	 * @param unedateModif mettre une dateModif qui est la date d'aujourd'huit
 	 */ 
-	public FicheFrais(String unmois, int unbJustificatifs,double unmontantValide, String unedateModif){
-		mois=unmois;
-		nbJustificatifs=unbJustificatifs;
-		montantValide=unmontantValide;
-		dateModif=unedateModif;
+	public FicheFrais(String unMois, int unNbJustificatifs, double unMontantValide, Date uneDateModif){
+		this.mois = unMois;
+		this.nbJustificatifs = unNbJustificatifs;
+		this.montantValide = unMontantValide;
+		this.dateModif = uneDateModif;
 	}
 
 	//-------------------------------------------------------------------
@@ -32,7 +35,7 @@ public class FicheFrais {
 	 * methode qui permet de retourner le mois de la classe FicheFrais 
 	 */
 	public String getMois(){
-		return mois;
+		return this.mois;
 	}
 
 
@@ -40,7 +43,7 @@ public class FicheFrais {
 	 * methode qui permet de retourner le nombre de Justificatifs de la classe FicheFrais 
 	 */
 	public int getNbJustificatifs(){
-		return nbJustificatifs;
+		return this.nbJustificatifs;
 	}
 
 
@@ -48,15 +51,15 @@ public class FicheFrais {
 	 * methode qui permet de retourner le montantValide de la classe FicheFrais 
 	 */
 	public double getMontantValide(){
-		return montantValide;
+		return this.montantValide;
 	}
 
 
 	/**
 	 * methode qui permet de retourner la dateModif de la classe FicheFrais
 	 */
-	public String getDateModif(){
-		return dateModif;
+	public Date getDateModif(){
+		return this.dateModif;
 	}
 
 	//-------------------------------------------------------------------
@@ -68,7 +71,7 @@ public class FicheFrais {
 	 * @param unMois mettre un mois qui est une chaine de charactère et espacer par "-" apres chaque chiffre
 	 */ 
 	public void setMois(String unMois){
-		this.mois=unMois;
+		this.mois = unMois;
 	}
 
 
@@ -78,7 +81,7 @@ public class FicheFrais {
 	 * @param unNbJustificatifs mettre un nbJustificatifs qui est un entier
 	 */ 
 	public void setNbJustificatifs(int unNbJustificatifs){
-		this.nbJustificatifs=unNbJustificatifs;
+		this.nbJustificatifs = unNbJustificatifs;
 	}
 
 
@@ -88,7 +91,7 @@ public class FicheFrais {
 	 * @param unMontantValide mettre un montantValide qui est un chiffre avec une virgule
 	 */ 
 	public void setMontantValide(double unMontantValide){
-		this.montantValide=unMontantValide;
+		this.montantValide = unMontantValide;
 	}
 
 
@@ -97,7 +100,7 @@ public class FicheFrais {
 	 *
 	 * @param uneDate mettre un dateModif qui est provient de la classe date
 	 */ 
-	public void setDateModif(String uneDate){
-		this.dateModif=uneDate;
+	public void setDateModif(Date uneDate){
+		this.dateModif = uneDate;
 	}
 }
