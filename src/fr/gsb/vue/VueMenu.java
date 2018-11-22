@@ -18,7 +18,7 @@ public class VueMenu extends JMenuBar {
 		
 		this.jmiAfficherForfait = new JMenuItem("Affichage des forfaits");
 		
-		this.jmComptable.add(this.jmiAfficherForfait)
+		this.jmComptable.add(this.jmiAfficherForfait);
 		
 		this.add(this.jmComptable);
 	}
