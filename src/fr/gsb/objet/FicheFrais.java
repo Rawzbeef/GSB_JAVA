@@ -13,7 +13,7 @@ public class FicheFrais {
 	/**
 	 * Constructeur de la classe FicheFrais
 	 *
-	 * @param unMois mettre un mois qui est une chaine de charactère
+	 * @param unMois mettre un mois qui est une chaine de caractères avec comme format aaaamm
 	 * @param unNbJustificatifs mettre un nombre de justificatifs qui est un entier
 	 * @param unMontantValide mettre un montant valide qui est un nombre décimal
 	 * @param uneDateModif mettre une date qui est la date d'aujourd'hui
