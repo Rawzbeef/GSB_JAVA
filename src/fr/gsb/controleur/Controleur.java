@@ -9,7 +9,7 @@ public class Controleur {
 		Gsb gsb = new Gsb();
 		VueMessage vueMsg = new VueMessage();
 		new Vue(gsb, vueMsg);
-
+		
 	}
 
 }
