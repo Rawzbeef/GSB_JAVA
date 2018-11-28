@@ -19,48 +19,43 @@ import utiliser:
  */
 @SuppressWarnings("serial")
 
-public class VueAfficherFrais extends JPanel implements ItemListener{
+public class VueAfficherFrais extends JPanel implements ActionListener{
 	//JComboBox
-	private JComboBox listeVisiteur;
-	private JComboBox listeMois;
+	private JComboBox<String> listeVisiteur;
+	private JComboBox<String> listeMois;
 	//JPanel
 	private JPanel JPNorth;
 	private JPanel JPdown;
-	
-	// mettre private ArrayList<Visiteur> LesVisiteurs
-	
+
+	// mettre private ArrayList<Visiteur> lesVisiteurs
+
 	public VueAfficherFrais(){
 		this.setLayout(new BorderLayout());
 		JPNorth = new JPanel();
-		
+
 		//listeVisiteur
-		listeVisiteur = new JComboBox();
 		String[] tab = {"Option 1", "Option 2", "Option 3", "…"};
-		listeVisiteur = new JComboBox(tab);
+		listeVisiteur = new JComboBox<String>(tab);
 		
-		ItemListener itemListener = new ItemListener() {
-		      public void itemStateChanged(ItemEvent itemEvent) {
-		        System.out.println("Item: " + itemEvent.getItem());
-		      }
-		    };
-		    listeVisiteur.addItemListener(itemListener);
-		    listeVisiteur.setPreferredSize(new Dimension(100,20));
-			JPNorth.add(this.listeVisiteur);
+		listeVisiteur.addActionListener(this);
+		listeVisiteur.setPreferredSize(new Dimension(100,20));
+		JPNorth.add(this.listeVisiteur);
 		
-		//listMois
-		listeMois = new JComboBox();
+		/*//listMois
 		String[] tab2 = {"Option 1", "Option 2", "Option 3", "…"};
 		listeMois = new JComboBox(tab);
 		listeMois.setPreferredSize(new Dimension(100,20));
 		JPNorth.add(this.listeMois);
-		
-		
+		 */
+
 		//ajout dans le PanelPrinciapl
 		this.add(JPNorth, BorderLayout.NORTH);
 	}
 	@Override
-	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent event) {
+		JComboBox<String> test=(JComboBox<String>)event.getSource();
+		System.out.println(test.getSelectedItem());
 		
 	}
 }
+
