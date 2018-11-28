@@ -14,7 +14,7 @@ public class Visiteur {
 	private String ville;
 	private Date dateEmbauche;
 
-	public Visiteur(String id, String nom, String prenom, String login, String mdp, String adresse, String cp, String ville, Date dateEmbauche) {
+	public Visiteur(String id, String nom, String prenom, String login, String mdp, String adresse, String cp, String ville, java.sql.Date date) {
 		this.setId(id);
 		this.setNom(nom);
 		this.setPrenom(prenom);
@@ -23,7 +23,7 @@ public class Visiteur {
 		this.setAdresse(adresse);
 		this.setCp(cp);
 		this.setVille(ville);
-		this.setDateEmbauche(dateEmbauche);
+		this.setDateEmbauche(date);
 	}
 
 	public String getId() {
