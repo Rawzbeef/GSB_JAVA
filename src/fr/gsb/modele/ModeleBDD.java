@@ -81,12 +81,12 @@ public class ModeleBDD {
 		connexionBDD();
 		ArrayList<Visiteur> lesVisiteurs = new ArrayList<Visiteur>();
 		try {
-			String req = "SELECT * FROM gsb_Employe WHERE statut ='visiteur'";
+			String req = "SELECT * FROM gsb_Employe WHERE statut = 'visiteur'";
 			st = connexion.createStatement();
 			rs = st.executeQuery(req);
 			Visiteur unVisiteur;
 			while(rs.next()){
-				unVisiteur=new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+				unVisiteur = new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
 				lesVisiteurs.add(unVisiteur);
 			}
 			rs.close();
@@ -103,7 +103,7 @@ public class ModeleBDD {
 	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné
 	 * @return
 	 */
-	public static ArrayList<String> initLesFraisHorsForfaits(String idV){
+	public static ArrayList<FraisHorsForfait> initLesFraisHorsForfaits(String idV){
 		connexionBDD();
 		ArrayList<FraisHorsForfait> lesFrais = new ArrayList<FraisHorsForfait>();
 		try {
