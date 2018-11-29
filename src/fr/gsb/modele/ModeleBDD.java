@@ -104,7 +104,7 @@ public class ModeleBDD {
 	 * 
 	 * @return lesFrais qui sont hors forfaits
 	 */
-	public static ArrayList<FraisHorsForfait> gettLesFraisHorsForfaits(String idV){
+	public static ArrayList<FraisHorsForfait> getLesFraisHorsForfaits(String idV){
 		connexionBDD();
 		ArrayList<FraisHorsForfait> lesFrais = new ArrayList<FraisHorsForfait>();
 		try {
