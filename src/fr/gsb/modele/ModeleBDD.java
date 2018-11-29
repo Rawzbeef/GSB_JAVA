@@ -104,20 +104,21 @@ public class ModeleBDD {
 	 * 
 	 * @return lesFrais qui sont hors forfaits
 	 */
-	public static ArrayList<FraisHorsForfait> initLesFraisHorsForfaits(){
+	public static ArrayList<FraisHorsForfait> gettLesFraisHorsForfaits(String idV){
 		connexionBDD();
 		ArrayList<FraisHorsForfait> lesFrais = new ArrayList<FraisHorsForfait>();
 		try {
-			String req = "SELECT * FROM gsb_lignefraishorsforfait";
-			st = connexion.createStatement();
-			rs = st.executeQuery(req);
+			String req = "SELECT * FROM gsb_lignefraishorsforfait WHERE idVisiteur = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, idV);
+			rs = pst.executeQuery();
 			FraisHorsForfait unFrais;
 			while(rs.next()){
 				unFrais = new FraisHorsForfait(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6));
 				lesFrais.add(unFrais);
 			}
 			rs.close();
-			st.close();
+			pst.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
