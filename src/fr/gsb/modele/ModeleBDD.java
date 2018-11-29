@@ -78,7 +78,7 @@ public class ModeleBDD {
 	 * @return true si les identifiants sont corrects
 	 */
 	//a continuer de faire
-	public static ArrayList<String> initLesVisiteur(){
+	public static ArrayList<Visiteur> initLesVisiteur(){
 		connexionBDD();
 		ArrayList<Visiteur> LesVisiteur=new ArrayList<Visiteur>();
 		try {
@@ -87,7 +87,7 @@ public class ModeleBDD {
 			rs = pst.executeQuery();
 			Visiteur unVisiteur;
 			while(rs.next()){
-				unVisiteur=new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getDate(9));
+				unVisiteur=new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
 			}
 			rs.close();
 

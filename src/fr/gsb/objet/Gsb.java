@@ -5,8 +5,42 @@ import java.util.ArrayList;
 import fr.gsb.modele.ModeleBDD;
 
 public class Gsb {
-	private ArrayList<String> lesVisiteur;
+	// Attributs privés
+	private ArrayList<Visiteur> lesVisiteurs;
+	
+	private String idConnecté;
+	
 	public Gsb() {
-		this.lesVisiteur=ModeleBDD.initLesVisiteur();
+		this.setLesVisiteurs(ModeleBDD.initLesVisiteur());
+		this.setIdConnecté(null);
+	}
+
+	public ArrayList<Visiteur> getLesVisiteurs() {
+		return this.lesVisiteurs;
+	}
+
+	public void setLesVisiteurs(ArrayList<Visiteur> lesVisiteurs) {
+		this.lesVisiteurs = lesVisiteurs;
+	}
+	
+	public Visiteur getVisiteur(String id) {
+		int i = 0;
+		while(i < this.lesVisiteurs.size() && !this.lesVisiteurs.get(i).getId().equals(id)) {
+			i++;
+		}
+		if(i < this.lesVisiteurs.size() && this.lesVisiteurs.get(i).getId().equals(id)) {
+			return this.lesVisiteurs.get(i);
+		}
+		else {
+			return null;
+		}
+	}
+
+	public String getIdConnecté() {
+		return idConnecté;
+	}
+
+	public void setIdConnecté(String idConnecté) {
+		this.idConnecté = idConnecté;
 	}
 }

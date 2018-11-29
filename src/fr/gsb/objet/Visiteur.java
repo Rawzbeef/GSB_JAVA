@@ -12,9 +12,9 @@ public class Visiteur {
 	private String adresse;
 	private String cp;
 	private String ville;
-	private Date dateEmbauche;
+	private String dateEmbauche;
 
-	public Visiteur(String id, String nom, String prenom, String login, String mdp, String adresse, String cp, String ville, java.sql.Date date) {
+	public Visiteur(String id, String nom, String prenom, String login, String mdp, String adresse, String cp, String ville, String date) {
 		this.setId(id);
 		this.setNom(nom);
 		this.setPrenom(prenom);
@@ -27,7 +27,7 @@ public class Visiteur {
 	}
 
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(String id) {
@@ -35,7 +35,7 @@ public class Visiteur {
 	}
 
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
@@ -43,7 +43,7 @@ public class Visiteur {
 	}
 
 	public String getPrenom() {
-		return prenom;
+		return this.prenom;
 	}
 
 	public void setPrenom(String prenom) {
@@ -51,7 +51,7 @@ public class Visiteur {
 	}
 
 	public String getLogin() {
-		return login;
+		return this.login;
 	}
 
 	public void setLogin(String login) {
@@ -59,7 +59,7 @@ public class Visiteur {
 	}
 
 	public String getMdp() {
-		return mdp;
+		return this.mdp;
 	}
 
 	public void setMdp(String mdp) {
@@ -67,7 +67,7 @@ public class Visiteur {
 	}
 
 	public String getAdresse() {
-		return adresse;
+		return this.adresse;
 	}
 
 	public void setAdresse(String adresse) {
@@ -75,7 +75,7 @@ public class Visiteur {
 	}
 
 	public String getCp() {
-		return cp;
+		return this.cp;
 	}
 
 	public void setCp(String cp) {
@@ -83,19 +83,19 @@ public class Visiteur {
 	}
 
 	public String getVille() {
-		return ville;
+		return this.ville;
 	}
 
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
 
-	public Date getDateEmbauche() {
-		return dateEmbauche;
+	public String getDateEmbauche() {
+		return this.dateEmbauche;
 	}
 
-	public void setDateEmbauche(Date dateEmbauche) {
-		this.dateEmbauche = dateEmbauche;
+	public void setDateEmbauche(String date) {
+		this.dateEmbauche = date;
 	}
 
 }
