@@ -7,16 +7,14 @@ import fr.gsb.modele.ModeleBDD;
 public class Gsb {
 	// Attributs privés
 	private ArrayList<Visiteur> lesVisiteurs;
-	
-	private String idConnecté;
-
 	private ArrayList<FraisHorsForfait> lesFraisHorsForfaits;
+	private String idConnecté;
 	
 	public Gsb() {
 		this.setLesVisiteurs(ModeleBDD.initLesVisiteurs());
 		
 		this.lesFraisHorsForfaits = ModeleBDD.initLesFraisHorsForfaits();
-		
+
 		this.setIdConnecté(null);
 	}
 
@@ -39,6 +37,14 @@ public class Gsb {
 		else {
 			return null;
 		}
+	}
+
+	public ArrayList<FraisHorsForfait> getLesFraisHorsForfaits() {
+		return this.lesFraisHorsForfaits;
+	}
+
+	public void setLesFraisHorsForfaits(ArrayList<FraisHorsForfait> lesFraisHorsForfaits) {
+		this.lesFraisHorsForfaits = lesFraisHorsForfaits;
 	}
 
 	public String getIdConnecté() {
