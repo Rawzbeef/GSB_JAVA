@@ -63,7 +63,7 @@ public class ModeleBDD {
 				trouver = true;
 			}
 			rs.close();
-
+			pst.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class ModeleBDD {
 				lesVisiteurs.add(unVisiteur);
 			}
 			rs.close();
-
+			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
