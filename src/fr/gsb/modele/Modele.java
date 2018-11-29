@@ -2,7 +2,11 @@ package fr.gsb.modele;
 
 import java.security.*;
 
+import fr.gsb.objet.Gsb;
+
 public class Modele {
+	
+	private static Gsb gsb;
 	
 	public static String cryptageMd5(String mdp) {
         String passwordToHash = mdp;
@@ -27,5 +31,10 @@ public class Modele {
         }
         return generatedPassword;
     }
+	
+	public static Gsb getGsb() {
+		gsb = new Gsb();
+		return gsb;
+	}
 }
 

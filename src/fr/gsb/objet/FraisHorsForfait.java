@@ -4,25 +4,30 @@ public class FraisHorsForfait {
 	
 	// Attributs privés
 	private int id;
+	private String idV;
 	private String mois;
 	private String libelle;
 	private String date;
 	private double montant;
-	private Visiteur unVisiteur;
 	
 	// Constructeur
-	public FraisHorsForfait(int unId, String unMois, String unLib, String uneDate, double unMontant, Visiteur v) {
+	public FraisHorsForfait(int unId, String unIdV, String unMois, String unLib, String uneDate, double unMontant) {
 		this.id = unId;
+		this.idV = unIdV;
 		this.mois = unMois;
 		this.libelle = unLib;
 		this.date = uneDate;
 		this.montant = unMontant;
-		this.unVisiteur = v;
+		 
 	}
 	
 	// Méthodes publiques
 	public int getId() {
 		return this.id;
+	}
+	
+	public String getIdVisiteur() {
+		return this.idV;
 	}
 	
 	public String getMois() {
@@ -39,10 +44,6 @@ public class FraisHorsForfait {
 	
 	public double getMontant() {
 		return this.montant;
-	}
-	
-	public Visiteur getVisiteur() {
-		return this.unVisiteur;
 	}
 	
 }
