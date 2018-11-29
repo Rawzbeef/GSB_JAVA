@@ -2,8 +2,6 @@ package fr.gsb.objet;
 
 public class Visiteur {
 	
-	
-
 	private String id;
 	private String nom;
 	private String prenom;
