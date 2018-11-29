@@ -9,9 +9,14 @@ public class Gsb {
 	private ArrayList<Visiteur> lesVisiteurs;
 	
 	private String idConnecté;
+
+	private ArrayList<FraisHorsForfait> lesFraisHorsForfaits;
 	
 	public Gsb() {
 		this.setLesVisiteurs(ModeleBDD.initLesVisiteurs());
+		
+		this.lesFraisHorsForfaits = ModeleBDD.initLesFraisHorsForfaits(idConnecté);
+		
 		this.setIdConnecté(null);
 	}
 

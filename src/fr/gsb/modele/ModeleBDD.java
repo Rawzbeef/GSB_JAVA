@@ -107,6 +107,7 @@ public class ModeleBDD {
 	public static ArrayList<FraisHorsForfait> initLesFraisHorsForfaits(String idV){
 		connexionBDD();
 		ArrayList<FraisHorsForfait> lesFrais = new ArrayList<FraisHorsForfait>();
+		Gsb gsb = new Gsb();
 		try {
 			String req = "SELECT * FROM gsb_lignefraishorsforfait WHERE idVisiteur = ?";
 			pst = connexion.prepareStatement(req);
@@ -114,7 +115,7 @@ public class ModeleBDD {
 			rs = pst.executeQuery();
 			FraisHorsForfait unFrais;
 			while(rs.next()){
-				unFrais = new FraisHorsForfait(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(2));
+				unFrais = new FraisHorsForfait(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), gsb.getVisiteur(rs.getString(2)));
 				lesFrais.add(unFrais);
 			}
 			rs.close();
