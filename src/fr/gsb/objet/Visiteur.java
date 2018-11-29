@@ -2,8 +2,6 @@ package fr.gsb.objet;
 
 public class Visiteur {
 	
-	
-
 	private String id;
 	private String nom;
 	private String prenom;
@@ -12,9 +10,9 @@ public class Visiteur {
 	private String adresse;
 	private String cp;
 	private String ville;
-	private Date dateEmbauche;
+	private String dateEmbauche;
 
-	public Visiteur(String id, String nom, String prenom, String login, String mdp, String adresse, String cp, String ville, java.sql.Date date) {
+	public Visiteur(String id, String nom, String prenom, String login, String mdp, String adresse, String cp, String ville, String date) {
 		this.setId(id);
 		this.setNom(nom);
 		this.setPrenom(prenom);
@@ -90,11 +88,11 @@ public class Visiteur {
 		this.ville = ville;
 	}
 
-	public Date getDateEmbauche() {
+	public String getDateEmbauche() {
 		return dateEmbauche;
 	}
 
-	public void setDateEmbauche(Date dateEmbauche) {
+	public void setDateEmbauche(String dateEmbauche) {
 		this.dateEmbauche = dateEmbauche;
 	}
 

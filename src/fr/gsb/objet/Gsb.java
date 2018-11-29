@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import fr.gsb.modele.ModeleBDD;
 
 public class Gsb {
-	private ArrayList<String> lesVisiteur;
+	
+	private ArrayList<String> lesVisiteurs;
+	
 	public Gsb() {
-		this.lesVisiteur=ModeleBDD.initLesVisiteur();
+		this.lesVisiteurs = ModeleBDD.initLesVisiteurs();
 	}
 }

@@ -3,7 +3,7 @@ package fr.gsb.modele;
 import java.sql.*;
 import java.util.ArrayList;
 
-import fr.gsb.objet.Visiteur;
+import fr.gsb.objet.*;
 public class ModeleBDD {
 
 	// Attributs privés
@@ -78,7 +78,7 @@ public class ModeleBDD {
 	 * @return true si les identifiants sont corrects
 	 */
 	//a continuer de faire
-	public static ArrayList<String> initLesVisiteur(){
+	public static ArrayList<String> initLesVisiteurs(){
 		connexionBDD();
 		ArrayList<Visiteur> LesVisiteur=new ArrayList<Visiteur>();
 		try {
@@ -87,7 +87,7 @@ public class ModeleBDD {
 			rs = pst.executeQuery();
 			Visiteur unVisiteur;
 			while(rs.next()){
-				unVisiteur=new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getDate(9));
+				unVisiteur=new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
 			}
 			rs.close();
 
@@ -98,6 +98,34 @@ public class ModeleBDD {
 		
 		deconnexionBDD();
 		return null;
+	}
+	
+	/**
+	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné
+	 * @return
+	 */
+	public static ArrayList<String> initLesFraisHorsForfaits(String idV){
+		connexionBDD();
+		ArrayList<FraisHorsForfait> lesFrais = new ArrayList<FraisHorsForfait>();
+		try {
+			String req = "SELECT * FROM gsb_lignefraishorsforfait WHERE idVisiteur = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, idV);
+			rs = pst.executeQuery();
+			FraisHorsForfait unFrais;
+			while(rs.next()){
+				unFrais = new FraisHorsForfait(rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(2));
+				lesFrais.add(unFrais);
+			}
+			rs.close();
+			pst.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		deconnexionBDD();
+		return lesFrais;
 
 	}
 }
