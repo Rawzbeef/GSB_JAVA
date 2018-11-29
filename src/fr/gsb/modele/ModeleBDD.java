@@ -98,7 +98,30 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
-	
+	/**
+	 * Permet de renvoyer une liste de Visiteur
+	 * 
+	 * id-nom prenom
+	 * @return lesVisiteurs
+	 */
+	// a continuer
+	public static ArrayList<String> GetVisiteursMois(String unMois){
+		connexionBDD();
+		ArrayList<String> lesVisiteurs = new ArrayList<String>();
+		try {
+			String req = "SELECT id,nom,prenom FROM gsb_Employe WHERE statut = 'visiteur'";
+			st = connexion.createStatement();
+			rs = st.executeQuery(req);
+			
+			rs.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		deconnexionBDD();
+		return lesVisiteurs;
+	}
 	/**
 	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné
 	 * 
