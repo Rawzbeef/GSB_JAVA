@@ -11,7 +11,7 @@ public class Gsb {
 	private String idConnecté;
 	
 	public Gsb() {
-		this.setLesVisiteurs(ModeleBDD.initLesVisiteur());
+		this.setLesVisiteurs(ModeleBDD.initLesVisiteurs());
 		this.setIdConnecté(null);
 	}
 

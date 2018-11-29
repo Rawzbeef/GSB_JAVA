@@ -101,7 +101,8 @@ public class ModeleBDD {
 	
 	/**
 	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné
-	 * @return
+	 * 
+	 * @return lesFrais qui sont hors forfaits
 	 */
 	public static ArrayList<FraisHorsForfait> initLesFraisHorsForfaits(String idV){
 		connexionBDD();
