@@ -73,19 +73,17 @@ public class ModeleBDD {
 
 
 	/**
-	 * permet de renvoyer une liste de Visiteur.
+	 * Permet de renvoyer une liste de Visiteur
 	 * 
-	 * @return true si les identifiants sont corrects
+	 * @return lesVisiteurs
 	 */
-	//a continuer de faire
-
 	public static ArrayList<Visiteur> initLesVisiteurs(){
 		connexionBDD();
 		ArrayList<Visiteur> lesVisiteurs = new ArrayList<Visiteur>();
 		try {
-			String req = "SELECT * FROM gsb_Employe where statut='visiteur'";
-			pst = connexion.prepareStatement(req);
-			rs = pst.executeQuery();
+			String req = "SELECT * FROM gsb_Employe WHERE statut ='visiteur'";
+			st = connexion.createStatement();
+			rs = st.executeQuery(req);
 			Visiteur unVisiteur;
 			while(rs.next()){
 				unVisiteur=new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
