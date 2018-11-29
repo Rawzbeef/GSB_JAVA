@@ -10,6 +10,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.*;
+
+import fr.gsb.controleur.action.ActionVueAfficherFrais;
 /*
 import utiliser:
 -import javax.swing.JComboBox;
@@ -19,7 +21,7 @@ import utiliser:
  */
 @SuppressWarnings("serial")
 
-public class VueAfficherFrais extends JPanel implements ActionListener{
+public class VueAfficherFrais extends JPanel {
 	//JComboBox
 	private JComboBox<String> listeVisiteur;
 	private JComboBox<String> listeMois;
@@ -37,7 +39,7 @@ public class VueAfficherFrais extends JPanel implements ActionListener{
 		String[] tab = {"Option 1", "Option 2", "Option 3", "…"};
 		listeVisiteur = new JComboBox<String>(tab);
 		
-		listeVisiteur.addActionListener(this);
+		listeVisiteur.addActionListener(new ActionVueAfficherFrais(listeVisiteur));
 		listeVisiteur.setPreferredSize(new Dimension(100,20));
 		JPNorth.add(this.listeVisiteur);
 		
@@ -50,12 +52,6 @@ public class VueAfficherFrais extends JPanel implements ActionListener{
 
 		//ajout dans le PanelPrinciapl
 		this.add(JPNorth, BorderLayout.NORTH);
-	}
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		JComboBox<String> test=(JComboBox<String>)event.getSource();
-		System.out.println(test.getSelectedItem());
-		
 	}
 }
 
