@@ -126,4 +126,26 @@ public class ModeleBDD {
 		return lesFrais;
 
 	}
+
+	public static ArrayList<FicheFrais> getLesFicheFrais(String id) {
+		connexionBDD();
+		ArrayList<FicheFrais> lesFiches = new ArrayList<FicheFrais>();
+		try {
+			String req = "SELECT * FROM gsb_fichefrais";
+			st = connexion.createStatement();
+			rs = st.executeQuery(req);
+			FicheFrais uneFiche;
+			while(rs.next()){
+				uneFiche = new FicheFrais(id, rs.getInt(2), rs.getDouble(3), rs.getString(4), rs.getString(5));
+				lesFiches.add(uneFiche);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return lesFiches;
+	}
 }

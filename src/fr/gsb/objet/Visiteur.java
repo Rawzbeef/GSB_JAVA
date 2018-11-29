@@ -1,5 +1,9 @@
 package fr.gsb.objet;
 
+import java.util.ArrayList;
+
+import fr.gsb.modele.ModeleBDD;
+
 public class Visiteur {
 	
 	private String id;
@@ -11,6 +15,8 @@ public class Visiteur {
 	private String cp;
 	private String ville;
 	private String dateEmbauche;
+	
+	private ArrayList<FicheFrais> lesFicheFrais;
 
 	public Visiteur(String id, String nom, String prenom, String login, String mdp, String adresse, String cp, String ville, String date) {
 		this.setId(id);
@@ -22,6 +28,7 @@ public class Visiteur {
 		this.setCp(cp);
 		this.setVille(ville);
 		this.setDateEmbauche(date);
+		this.lesFicheFrais = ModeleBDD.getLesFicheFrais(this.id);
 	}
 
 	public String getId() {
