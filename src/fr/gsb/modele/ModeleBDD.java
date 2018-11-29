@@ -78,9 +78,9 @@ public class ModeleBDD {
 	 * @return true si les identifiants sont corrects
 	 */
 	//a continuer de faire
-	public static ArrayList<String> initLesVisiteurs(){
+	public static ArrayList<Visiteur> initLesVisiteurs(){
 		connexionBDD();
-		ArrayList<Visiteur> LesVisiteur=new ArrayList<Visiteur>();
+		ArrayList<Visiteur> lesVisiteurs = new ArrayList<Visiteur>();
 		try {
 			String req = "SELECT * FROM gsb_Employe where statut='visiteur'";
 			pst = connexion.prepareStatement(req);
@@ -88,6 +88,7 @@ public class ModeleBDD {
 			Visiteur unVisiteur;
 			while(rs.next()){
 				unVisiteur=new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+				lesVisiteurs.add(unVisiteur);
 			}
 			rs.close();
 
@@ -95,9 +96,8 @@ public class ModeleBDD {
 			e.printStackTrace();
 		}
 		
-		
 		deconnexionBDD();
-		return null;
+		return lesVisiteurs;
 	}
 	
 	/**
@@ -122,8 +122,7 @@ public class ModeleBDD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		deconnexionBDD();
 		return lesFrais;
 

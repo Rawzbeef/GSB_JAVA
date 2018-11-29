@@ -92,8 +92,8 @@ public class Visiteur {
 		return dateEmbauche;
 	}
 
-	public void setDateEmbauche(String dateEmbauche) {
-		this.dateEmbauche = dateEmbauche;
+	public void setDateEmbauche(String date) {
+		this.dateEmbauche = date;
 	}
 
 }
