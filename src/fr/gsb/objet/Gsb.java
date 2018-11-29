@@ -13,7 +13,7 @@ public class Gsb {
 	public Gsb() {
 		this.setLesVisiteurs(ModeleBDD.initLesVisiteurs());
 		
-		this.lesFraisHorsForfaits = ModeleBDD.initLesFraisHorsForfaits();
+		this.lesFraisHorsForfaits = ModeleBDD.getLesFraisHorsForfaits(idConnecté);
 
 		this.setIdConnecté(null);
 	}

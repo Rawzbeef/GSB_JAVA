@@ -7,14 +7,18 @@ import java.awt.event.*;
 import javax.swing.JComboBox;
 
 public class ActionVueAfficherFrais implements ActionListener{
-	public ActionVueAfficherFrais(JComboBox<String> listeVisiteur) {
-	}
+	private JComboBox<String> listeVisiteur;
+	private JComboBox<String> listeMois;
+	public ActionVueAfficherFrais(JComboBox<String> unelisteVisiteur, JComboBox<String> unelisteMois) {
+		listeVisiteur=unelisteVisiteur;
+		listeMois=unelisteMois;
+		}
+	
 	@Override
 	//action performed utiliser par VueAfficherFrais
-	public void actionPerformed(ActionEvent event) {
-		JComboBox<String> test=(JComboBox<String>)event.getSource();
-		System.out.println(test.getSelectedItem());
-		
+	public void actionPerformed(ActionEvent event) {		
+		listeVisiteur=(JComboBox<String>)event.getSource();
+		System.out.println(listeVisiteur.getSelectedItem());//afficher l'item selectionner
+		listeMois.setEditable(true);
 	}
-
 }
