@@ -28,7 +28,7 @@ public class Visiteur {
 		this.setCp(cp);
 		this.setVille(ville);
 		this.setDateEmbauche(date);
-		this.lesFicheFrais = ModeleBDD.getLesFicheFrais(this.id);
+		this.setLesFicheFrais(new ArrayList<FicheFrais>());
 	}
 
 	public String getId() {
@@ -101,6 +101,19 @@ public class Visiteur {
 
 	public void setDateEmbauche(String date) {
 		this.dateEmbauche = date;
+	}
+
+	public ArrayList<FicheFrais> getLesFicheFrais() {
+		return this.lesFicheFrais;
+	}
+
+	public void setLesFicheFrais(ArrayList<FicheFrais> lesFicheFrais) {
+		this.lesFicheFrais = lesFicheFrais;
+	}
+
+	public void setFicheFrais(FicheFrais ficheFrais) {
+		this.lesFicheFrais.add(ficheFrais);
+		
 	}
 
 }

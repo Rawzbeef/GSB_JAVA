@@ -14,6 +14,8 @@ public class Gsb {
 		this.setLesVisiteurs(ModeleBDD.initLesVisiteurs());
 		
 		this.lesFraisHorsForfaits = ModeleBDD.getLesFraisHorsForfaits(idConnecté);
+		
+		ModeleBDD.initLienFicheFrais(lesVisiteurs);
 
 		this.setIdConnecté(null);
 	}

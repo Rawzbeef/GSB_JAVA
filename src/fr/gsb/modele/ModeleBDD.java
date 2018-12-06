@@ -73,7 +73,7 @@ public class ModeleBDD {
 
 
 	/**
-	 * Permet de renvoyer une liste de Visiteur
+	 * Permet de renvoyer la liste des Visiteur
 	 * 
 	 * @return lesVisiteurs
 	 */
@@ -98,8 +98,35 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
+	
 	/**
-	 * Permet de renvoyer une liste de Visiteur
+	 * Permet d'effectuer les liens objet entre les fiches frais et les visiteurs
+	 * 
+	 * @return lesVisiteurs
+	 */
+	public static ArrayList<Visiteur> initLienFicheFrais(ArrayList<Visiteur> lesVisiteurs) {
+		connexionBDD();
+		for(Visiteur visiteur : lesVisiteurs) {
+			try {
+				String req = "SELECT * FROM gsb_fichefrais WHERE idVisiteur = ?";
+				pst = connexion.prepareStatement(req);
+				pst.setString(1, visiteur.getId());
+				rs = pst.executeQuery();
+				while(rs.next()){
+					visiteur.setFicheFrais(new FicheFrais(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+				}
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		deconnexionBDD();
+		return lesVisiteurs;
+	}
+	
+	/**
+	 * Permet de renvoyer une liste de Visiteur selon un mois donné
 	 * 
 	 * id-nom prenom
 	 * @return lesVisiteurs
