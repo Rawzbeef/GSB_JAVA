@@ -8,7 +8,7 @@ public class Gsb {
 	// Attributs privés
 	private ArrayList<Visiteur> lesVisiteurs;
 	private ArrayList<FraisHorsForfait> lesFraisHorsForfaits;
-	private ArrayList<FicheFrais> lesFichesForfais;
+	private ArrayList<FicheFrais> lesFichesFrais;
 	private String idConnecté;
 	
 	public Gsb() {
@@ -50,8 +50,14 @@ public class Gsb {
 		this.lesFraisHorsForfaits = lesFraisHorsForfaits;
 	}
 	
-	public ArrayList<FicheFrais> getLesFichesFrais() {
-		return null;
+	public ArrayList<FicheFrais> getLesFichesFrais(String mois) {
+		ArrayList<FicheFrais> liste = new ArrayList<FicheFrais>();
+		for(FicheFrais fiche : this.lesFichesFrais) {
+			if(fiche.getMois() == mois) {
+				liste.add(fiche);
+			}
+		}
+		return liste;
 	}
 
 	public String getIdConnecté() {
