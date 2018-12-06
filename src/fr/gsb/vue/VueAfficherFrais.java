@@ -27,7 +27,6 @@ public class VueAfficherFrais extends JPanel {
 	//JPanel
 	private JPanel JPNorth;
 	private JPanel JPdown;
-	// mettre private ArrayList<Visiteur> lesVisiteurs
 	
 	public VueAfficherFrais(){
 		this.setLayout(new BorderLayout());
@@ -35,17 +34,18 @@ public class VueAfficherFrais extends JPanel {
 
 		//listMois 
 		String[] tab = {"janvier", "fevrier", "mars", "avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre"};
-		listeMois = new JComboBox<String>(tab);//listeMois
-		listeMois.setPreferredSize(new Dimension(100,20));//listeMois
-		JPNorth.add(this.listeMois);//listeMois
+		listeMois = new JComboBox<String>(tab);
+		listeMois.setPreferredSize(new Dimension(100,20));
+		JPNorth.add(this.listeMois);
 		
 		//listeVisiteur
-		listeVisiteur = new JComboBox();//listeVisiteur
-		listeVisiteur.setPreferredSize(new Dimension(100,20));//listeVisiteur
+		listeVisiteur = new JComboBox();
+		listeVisiteur.setPreferredSize(new Dimension(100,20));
 		listeVisiteur.setEnabled(false);
 		JPNorth.add(this.listeVisiteur);
 		 
-		listeMois.addActionListener(new ActionVueAfficherFrais(listeMois,listeVisiteur));
+		listeMois.addActionListener(new ActionVueAfficherFrais(listeMois,listeVisiteur,"Mois"));
+		listeVisiteur.addActionListener(new ActionVueAfficherFrais(listeMois,listeVisiteur,"Visiteur"));
 		//ajout dans le PanelPrinciapl
 		this.add(JPNorth, BorderLayout.NORTH);
 	}
