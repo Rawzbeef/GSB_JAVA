@@ -150,6 +150,7 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
+	
 	/**
 	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné à un mois donné
 	 * 
@@ -179,6 +180,7 @@ public class ModeleBDD {
 		return lesFrais;
 
 	}
+	
 	/**
 	 * Retourne les fiches de frais selon l'id d'un visiteur (Affichage des fiches de frais)
 	 * 
