@@ -3,7 +3,9 @@ package fr.gsb.vue;
 
 //import
 import fr.gsb.controleur.action.ActionVueAfficherFrais;
+
 import java.awt.*;
+
 import javax.swing.*;
 
 
@@ -25,6 +27,7 @@ public class VueAfficherFrais extends JPanel {
 	private JComboBox<String> listeVisiteur;
 	private JComboBox<String> listeMois;
 	private JComboBox<String> listeAnnees;
+	private JLabel barre;
 	//JPanel
 	private JPanel JPNorth;
 	private JPanel JPdown;
@@ -32,27 +35,30 @@ public class VueAfficherFrais extends JPanel {
 	public VueAfficherFrais(){
 		this.setLayout(new BorderLayout());
 		JPNorth = new JPanel();
-
+		barre = new JLabel ("/");
 		//listAnnees 
-		String[] tabAnnees = {"2018", "2017", "2016", "2015","2014","2013","2012","2011","2010","2009","2008","2007"};
-		listeAnnees = new JComboBox<String>(tabAnnees);
+		listeAnnees = new JComboBox<String>();
 		listeAnnees.setPreferredSize(new Dimension(100,20));
-		JPNorth.add(this.listeAnnees);
+		listeAnnees.setEnabled(false);
 		
 		//listMois 
-		listeMois = new JComboBox<String>();
+		String[] tabMois = {"01", "02", "03", "04","05","06","07","08","09","10","11","12"};
+		listeMois = new JComboBox<String>(tabMois);
 		listeMois.setPreferredSize(new Dimension(100,20));
-		listeMois.setEnabled(false);
-		JPNorth.add(this.listeMois);
-
-
+		
 
 		//listeVisiteur
 		listeVisiteur = new JComboBox();
 		listeVisiteur.setPreferredSize(new Dimension(100,20));
 		listeVisiteur.setEnabled(false);
+		
+		//ajout dans leJPNorth
+		JPNorth.add(this.listeMois);
+		JPNorth.add(this.barre);
+		JPNorth.add(this.listeAnnees);
 		JPNorth.add(this.listeVisiteur);
-
+		
+		// ajout action listener
 		listeMois.addActionListener(new ActionVueAfficherFrais(listeMois,listeAnnees,listeVisiteur,"Mois"));
 		listeAnnees.addActionListener(new ActionVueAfficherFrais(listeMois,listeAnnees,listeVisiteur,"Annees"));
 		listeVisiteur.addActionListener(new ActionVueAfficherFrais(listeMois,listeAnnees,listeVisiteur,"Visiteur"));
