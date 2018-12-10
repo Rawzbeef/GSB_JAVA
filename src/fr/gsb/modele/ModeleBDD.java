@@ -206,4 +206,24 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesFiches;
 	}
+
+	public static ArrayList<String> getLesMois() {
+		connexionBDD();
+		ArrayList<String> liste = new ArrayList<String>();
+		try {
+			String req = "SELECT DISTINCT mois FROM gsb_fichefrais";
+			st = connexion.createStatement();
+			rs = st.executeQuery(req);
+			while(rs.next()){
+				liste.add(rs.getString(1));
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return liste;
+	}
 }

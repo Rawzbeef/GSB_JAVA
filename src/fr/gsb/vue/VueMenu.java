@@ -21,7 +21,7 @@ public class VueMenu extends JMenuBar {
 		this.jmiAfficherFrais = new JMenuItem("Affichage des frais");
 		this.jmiAfficherFrais.addActionListener(new ActionMenu(gsb, vue, vueMessage, "AfficherFrais"));
 		
-		this.jmiModifierFrais = new JMenuItem("Affichage des frais");
+		this.jmiModifierFrais = new JMenuItem("Modification des frais");
 		this.jmiModifierFrais.addActionListener(new ActionMenu(gsb, vue, vueMessage, "ModifierFrais"));
 		
 		this.jmComptable.add(this.jmiAfficherFrais);

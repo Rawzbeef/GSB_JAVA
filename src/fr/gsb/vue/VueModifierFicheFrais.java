@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 import java.awt.Panel;
 
+@SuppressWarnings("serial")
 public class VueModifierFicheFrais extends Panel {
 
 	public VueModifierFicheFrais() {
@@ -13,6 +14,7 @@ public class VueModifierFicheFrais extends Panel {
 		//this.jcbVisiteur
 		
 		GridBagConstraints c = new GridBagConstraints();
+		
 		
 		
 	}
