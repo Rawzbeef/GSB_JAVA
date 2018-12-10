@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import fr.gsb.objet.*;
+
 public class ModeleBDD {
 
 	// Attributs privés
@@ -131,7 +132,7 @@ public class ModeleBDD {
 	 * id-nom prenom
 	 * @return lesVisiteurs
 	 */
-	public static ArrayList<String> GetVisiteursMois(String unMois){
+	public static ArrayList<String> getVisiteursMois(String unMois){
 		connexionBDD();
 		ArrayList<String> lesVisiteurs = new ArrayList<String>();
 		try {
@@ -178,7 +179,12 @@ public class ModeleBDD {
 		return lesFrais;
 
 	}
-
+	/**
+	 * Retourne les fiches de frais selon l'id d'un visiteur (Affichage des fiches de frais)
+	 * 
+	 * @param id
+	 * @return lesFichesFrais
+	 */
 	public static ArrayList<FicheFrais> getLesFicheFrais(String id) {
 		connexionBDD();
 		ArrayList<FicheFrais> lesFiches = new ArrayList<FicheFrais>();
