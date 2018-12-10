@@ -150,17 +150,18 @@ public class ModeleBDD {
 		return lesVisiteurs;
 	}
 	/**
-	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné
+	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné à un mois donné
 	 * 
 	 * @return lesFrais qui sont hors forfaits
 	 */
-	public static ArrayList<FraisHorsForfait> getLesFraisHorsForfaits(String idV){
+	public static ArrayList<FraisHorsForfait> getLesFraisHorsForfaits(String mois, String idV){
 		connexionBDD();
 		ArrayList<FraisHorsForfait> lesFrais = new ArrayList<FraisHorsForfait>();
 		try {
-			String req = "SELECT * FROM gsb_lignefraishorsforfait WHERE idVisiteur = ?";
+			String req = "SELECT * FROM gsb_lignefraishorsforfait WHERE idVisiteur = ? AND mois = ?";
 			pst = connexion.prepareStatement(req);
 			pst.setString(1, idV);
+			pst.setString(2, mois);
 			rs = pst.executeQuery();
 			FraisHorsForfait unFrais;
 			while(rs.next()){

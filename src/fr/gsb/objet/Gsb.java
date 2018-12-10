@@ -14,8 +14,6 @@ public class Gsb {
 	public Gsb() {
 		this.setLesVisiteurs(ModeleBDD.initLesVisiteurs());
 		
-		this.lesFraisHorsForfaits = ModeleBDD.getLesFraisHorsForfaits(idConnecté);
-		
 		ModeleBDD.initLienFicheFrais(lesVisiteurs);
 
 		this.setIdConnecté(null);
@@ -47,8 +45,8 @@ public class Gsb {
 		return null;
 	}
 
-	public ArrayList<FraisHorsForfait> getLesFraisHorsForfaits() {
-		return this.lesFraisHorsForfaits;
+	public ArrayList<FraisHorsForfait> getLesFraisHorsForfaits(String mois, String idV) {
+		return ModeleBDD.getLesFraisHorsForfaits(mois, idV);
 	}
 
 	public void setLesFraisHorsForfaits(ArrayList<FraisHorsForfait> lesFraisHorsForfaits) {
