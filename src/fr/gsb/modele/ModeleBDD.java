@@ -136,7 +136,7 @@ public class ModeleBDD {
 		connexionBDD();
 		ArrayList<String> lesVisiteurs = new ArrayList<String>();
 		try {
-			String req = "SELECT distinct(id),nom,prenom  FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND gsb_ficheFrais.mois = ? order by(gsb_employe.id)";
+			String req = "SELECT id FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND ficheFrais.mois = ?";
 			pst = connexion.prepareStatement(req);
 			pst.setString(1, unMois);
 			rs = pst.executeQuery();
