@@ -41,6 +41,10 @@ public class Gsb {
 			return null;
 		}
 	}
+	
+	public ArrayList<Visiteur> getLesVisiteurSelonMois(String mois) {
+		return null;
+	}
 
 	public ArrayList<FraisHorsForfait> getLesFraisHorsForfaits() {
 		return this.lesFraisHorsForfaits;
