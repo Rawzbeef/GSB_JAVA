@@ -8,6 +8,12 @@ public class Modele {
 	
 	private static Gsb gsb;
 	
+	/**
+	 * Crypte un mot de passe et le retourne
+	 * 
+	 * @param mdp
+	 * @return generatedPassword Le mot de passe crypté en MD5
+	 */
 	public static String cryptageMd5(String mdp) {
         String passwordToHash = mdp;
         String generatedPassword = null;
@@ -32,9 +38,28 @@ public class Modele {
         return generatedPassword;
     }
 	
+	/**
+	 * Instancie l'objet GSB initial
+	 * 
+	 * @return gsb
+	 */
 	public static Gsb getGsb() {
 		gsb = new Gsb();
 		return gsb;
+	}
+	
+	/**
+	 * Convertit le format date aaaamm en mm/aaaa
+	 * 
+	 * @param laDate
+	 * @return date
+	 */
+	public static String dateVersFrancais(String laDate) {
+		String date, mois, annee;
+		annee = laDate.substring(0, 4);
+		mois = laDate.substring(4, 6);
+		date = mois + "/" + annee;
+		return date;
 	}
 }
 
