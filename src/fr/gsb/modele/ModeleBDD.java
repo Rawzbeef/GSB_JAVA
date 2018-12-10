@@ -131,14 +131,14 @@ public class ModeleBDD {
 	 * id-nom prenom
 	 * @return lesVisiteurs
 	 */
-	// a continuer
 	public static ArrayList<String> GetVisiteursMois(String unMois){
 		connexionBDD();
 		ArrayList<String> lesVisiteurs = new ArrayList<String>();
 		try {
-			String req = "SELECT id,nom,prenom FROM gsb_Employe WHERE statut = 'visiteur'";
-			st = connexion.createStatement();
-			rs = st.executeQuery(req);
+			String req = "SELECT id FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND ficheFrais.mois = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, unMois);
+			rs = pst.executeQuery();
 			
 			rs.close();
 
