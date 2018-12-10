@@ -206,12 +206,17 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesFiches;
 	}
-
+	
+	/**
+	 * Retourne tous les mois des fiches de frais
+	 * 
+	 * @return Liste de mois sous format mmaaaa
+	 */
 	public static ArrayList<String> getLesMois() {
 		connexionBDD();
 		ArrayList<String> liste = new ArrayList<String>();
 		try {
-			String req = "SELECT DISTINCT mois FROM gsb_fichefrais";
+			String req = "SELECT DISTINCT mois FROM gsb_fichefrais WHERE idEtat != 'CR'";
 			st = connexion.createStatement();
 			rs = st.executeQuery(req);
 			while(rs.next()){

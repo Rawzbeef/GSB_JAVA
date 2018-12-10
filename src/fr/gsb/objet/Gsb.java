@@ -39,11 +39,6 @@ public class Gsb {
 			return null;
 		}
 	}
-	
-	public ArrayList<Visiteur> getLesVisiteurSelonMois(String mois) {
-		
-		return null;
-	}
 
 	public ArrayList<FraisHorsForfait> getLesFraisHorsForfaits(String mois, String idV) {
 		return ModeleBDD.getLesFraisHorsForfaits(mois, idV);

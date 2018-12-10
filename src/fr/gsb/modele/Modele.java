@@ -1,6 +1,7 @@
 package fr.gsb.modele;
 
 import java.security.*;
+import java.util.ArrayList;
 
 import fr.gsb.objet.Gsb;
 
@@ -35,6 +36,17 @@ public class Modele {
 	public static Gsb getGsb() {
 		gsb = new Gsb();
 		return gsb;
+	}
+	
+	public static String[] toTab(ArrayList<String> list) {
+		String[] tab = new String[list.size()+1];
+		tab[0] = "";
+		int i = 1;
+		for(String str : list) {
+			tab[i] = str;
+			i++;
+		}
+		return tab;
 	}
 }
 
