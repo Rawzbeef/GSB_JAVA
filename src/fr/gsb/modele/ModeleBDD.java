@@ -129,14 +129,14 @@ public class ModeleBDD {
 	/**
 	 * Permet de renvoyer une liste de Visiteur selon un mois donné
 	 * 
-	 * id-nom prenom
+	 * id
 	 * @return lesVisiteurs
 	 */
 	public static ArrayList<String> getVisiteursMois(String unMois){
 		connexionBDD();
 		ArrayList<String> lesVisiteurs = new ArrayList<String>();
 		try {
-			String req = "SELECT id FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND ficheFrais.mois = ?";
+			String req = "SELECT id FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND gsb_ficheFrais.mois = ?";
 			pst = connexion.prepareStatement(req);
 			pst.setString(1, unMois);
 			rs = pst.executeQuery();
@@ -150,7 +150,34 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
-	
+	/**
+	 * Permet de renvoyer une liste de Visiteur (nom,prenom) selon un mois donnes
+	 * 
+	 * nom prenom
+	 * @return lesVisiteurs
+	 */
+	public static ArrayList<Visiteur> getVisiteursMoisVue(String unMois){
+		connexionBDD();
+		ArrayList<Visiteur> lesVisiteurs = new ArrayList<Visiteur>();
+		try {
+			String req = "SELECT distinct(id),nom,prenom  FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND gsb_ficheFrais.mois = ? order by(gsb_employe.id)";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, unMois);
+			rs = pst.executeQuery();
+			Visiteur unvisiteur;
+			while(rs.next()){
+				unvisiteur= new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3),null,null,null,null,null,null);
+				lesVisiteurs.add(unvisiteur);
+			}
+			rs.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		deconnexionBDD();
+		return lesVisiteurs;
+	}
 	/**
 	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné à un mois donné
 	 * 
