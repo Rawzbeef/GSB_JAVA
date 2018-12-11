@@ -2,6 +2,7 @@ package fr.gsb.vue;
 
 import javax.swing.*;
 
+import fr.gsb.modele.ModeleBDD;
 import fr.gsb.objet.*;;
 
 @SuppressWarnings("serial")

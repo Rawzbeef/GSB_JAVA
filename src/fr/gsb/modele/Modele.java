@@ -61,5 +61,20 @@ public class Modele {
 		date = mois + "/" + annee;
 		return date;
 	}
+	
+	/**
+	 * Convertit le format date aaaa-mm-jj en jj-mm/aaaa
+	 * 
+	 * @param laDate
+	 * @return date
+	 */
+	public static String dateAnglaisVersFrancais(String laDate) {
+		String date, mois, annee, jour;
+		annee = laDate.substring(0, 4);
+		mois = laDate.substring(5, 7);
+		jour = laDate.substring(8, 10);
+		date = jour + "/" + mois + "/" + annee;
+		return date;
+	}
 }
 
