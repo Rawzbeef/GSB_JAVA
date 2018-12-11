@@ -1,24 +1,35 @@
 //a completer
 package fr.gsb.controleur.action;
 
+//import
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+
+import fr.gsb.modele.ModeleBDD;
+import fr.gsb.objet.Visiteur;
 
 public class ActionVueAfficherFrais implements ActionListener{
+	private JTable tableFicheFrais;
 	private JComboBox<String> listeVisiteur;
 	private JComboBox<String> listeMois;
 	private JComboBox<String> listeAnnees;
 	private String annees;
 	private String mois;
-	private String motTest;
 	private String mot;
+	private String MoisAnnees;
+	private String NomPrenom;
+	private ArrayList<Visiteur> VisiteurMois;
+	
 	public ActionVueAfficherFrais(JComboBox<String> unelisteMois ,JComboBox<String> unelisteAnnees ,JComboBox<String> unelisteVisiteur,String unMot) {
 		this.listeMois=unelisteMois;
 		this.listeAnnees=unelisteAnnees;
 		this.listeVisiteur=unelisteVisiteur;
 		this.mot=unMot;
+		VisiteurMois=new ArrayList<Visiteur>();
 	}
 
 	@Override
@@ -39,22 +50,28 @@ public class ActionVueAfficherFrais implements ActionListener{
 			break;
 
 		case "Annees":
-			
 			mois=(String)listeMois.getSelectedItem();
 			annees=(String)listeAnnees.getSelectedItem();
-			motTest=annees+mois;
-			System.out.println(motTest);
-			//fonction qui permet d'avoir les personnes du mois et année
-			String[] tab2 = {"janne", "ferier", "marie", "michel"};
-			for(int i=0;i<4;i++){
-				listeVisiteur.addItem(tab2[i]);	
+			MoisAnnees=annees+mois;
+			
+			//creation de la list VisiteurMois et ajoute de variable
+			VisiteurMois=new ArrayList<>();
+			VisiteurMois=ModeleBDD.getVisiteursMoisVue(MoisAnnees);
+			
+			//mise a 0 de la listeVisiteur puis ajout du nom et prénom du visiteur
+			listeVisiteur.removeAllItems();
+			for(int i=0;i<VisiteurMois.size();i++){
+				NomPrenom=VisiteurMois.get(i).getNom()+" "+VisiteurMois.get(i).getPrenom();
+				listeVisiteur.addItem(NomPrenom);
 			}
+			
 			listeVisiteur.setEnabled(true);
 			listeVisiteur.revalidate();
 			break;
 
 
 		case "Visiteur":
+			
 			break;
 		}
 	}

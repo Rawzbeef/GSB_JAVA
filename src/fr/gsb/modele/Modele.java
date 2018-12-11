@@ -80,6 +80,11 @@ public class Modele {
 		return date;
 	}
 	
+	/**
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public static String concatPremierMot(String str) {
 		int i = 0;
 		while(i < str.length() && str.charAt(i) != ' ') {
@@ -89,6 +94,20 @@ public class Modele {
 			str = str.substring(0, i-1);
 		}
 		return str;
+		}
+	/**
+	 * Convertit le format date aaaa-mm-jj en jj-mm/aaaa
+	 * 
+	 * @param laDate
+	 * @return date
+	 */
+	public static String dateAnglaisVersFrancais(String laDate) {
+		String date, mois, annee, jour;
+		annee = laDate.substring(0, 4);
+		mois = laDate.substring(5, 7);
+		jour = laDate.substring(8, 10);
+		date = jour + "/" + mois + "/" + annee;
+		return date;
 	}
 }
 

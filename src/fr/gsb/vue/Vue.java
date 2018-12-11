@@ -2,7 +2,7 @@ package fr.gsb.vue;
 
 import javax.swing.*;
 
-import fr.gsb.objet.*;;
+import fr.gsb.objet.*;
 
 @SuppressWarnings("serial")
 public class Vue extends JFrame{

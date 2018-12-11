@@ -129,7 +129,7 @@ public class ModeleBDD {
 	/**
 	 * Permet de renvoyer une liste de Visiteur selon un mois donné
 	 * 
-	 * id-nom prenom
+	 * id
 	 * @return lesVisiteurs
 	 */
 	public static ArrayList<String> getVisiteursMois(String unMois){
@@ -152,7 +152,34 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesIds;
 	}
-	
+	/**
+	 * Permet de renvoyer une liste de Visiteur (nom,prenom) selon un mois donnes
+	 * 
+	 * nom prenom
+	 * @return lesVisiteurs
+	 */
+	public static ArrayList<Visiteur> getVisiteursMoisVue(String unMois){
+		connexionBDD();
+		ArrayList<Visiteur> lesVisiteurs = new ArrayList<Visiteur>();
+		try {
+			String req = "SELECT distinct(id),nom,prenom  FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND gsb_ficheFrais.mois = ? order by(gsb_employe.id)";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, unMois);
+			rs = pst.executeQuery();
+			Visiteur unvisiteur;
+			while(rs.next()){
+				unvisiteur= new Visiteur(rs.getString(1), rs.getString(2), rs.getString(3),null,null,null,null,null,null);
+				lesVisiteurs.add(unvisiteur);
+			}
+			rs.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		deconnexionBDD();
+		return lesVisiteurs;
+	}
 	/**
 	 * Permet d'afficher la liste des frais hors forfaits pour un visiteur donné à un mois donné
 	 * 
@@ -169,7 +196,7 @@ public class ModeleBDD {
 			rs = pst.executeQuery();
 			FraisHorsForfait unFrais;
 			while(rs.next()){
-				unFrais = new FraisHorsForfait(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6));
+				unFrais = new FraisHorsForfait(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7));
 				lesFrais.add(unFrais);
 			}
 			rs.close();
@@ -181,6 +208,27 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesFrais;
 
+	}
+	
+	/**
+	 * Met à jour l'état de l'élément hors forfait
+	 * 
+	 * @param id de l'élément hors forfait
+	 * @param etat
+	 */
+	public static void metAJourEtatHorsForfait(int id, String etat) {
+		connexionBDD();
+		try {
+			String req = "UPDATE gsb_lignefraishorsforfait SET etat = ? WHERE id = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, etat);
+			pst.setInt(2, id);
+			pst.executeUpdate();
+			pst.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		deconnexionBDD();
 	}
 	
 	/**
