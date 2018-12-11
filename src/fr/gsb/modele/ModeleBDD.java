@@ -134,13 +134,15 @@ public class ModeleBDD {
 	 */
 	public static ArrayList<String> getVisiteursMois(String unMois){
 		connexionBDD();
-		ArrayList<String> lesVisiteurs = new ArrayList<String>();
+		ArrayList<String> lesIds = new ArrayList<String>();
 		try {
-			String req = "SELECT id FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND ficheFrais.mois = ?";
+			String req = "SELECT id FROM gsb_employe, gsb_ficheFrais WHERE gsb_employe.id = gsb_ficheFrais.idVisiteur AND gsb_ficheFrais.mois = ?";
 			pst = connexion.prepareStatement(req);
 			pst.setString(1, unMois);
 			rs = pst.executeQuery();
-			
+			while(rs.next()) {
+				lesIds.add(rs.getString(1));
+			}
 			rs.close();
 
 		} catch (SQLException e) {
@@ -148,7 +150,7 @@ public class ModeleBDD {
 		}
 		
 		deconnexionBDD();
-		return lesVisiteurs;
+		return lesIds;
 	}
 	
 	/**

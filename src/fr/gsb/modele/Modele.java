@@ -50,14 +50,14 @@ public class Modele {
 	}
 	
 	/**
-	 * Convertit une ArrayList en tableau
+	 * Convertit une ArrayList en tableau, l'indice 0 contient la variable fournie en paramètre
 	 * 
 	 * @param list : une liste de chaine de caractère
 	 * @return un tableau de chaine
 	 */
-	public static String[] toTab(ArrayList<String> list) {
+	public static String[] toTab(ArrayList<String> list, String chaine) {
 		String[] tab = new String[list.size()+1];
-		tab[0] = "";
+		tab[0] = chaine;
 		int i = 1;
 		for(String str : list) {
 			tab[i] = str;
@@ -78,6 +78,17 @@ public class Modele {
 		mois = laDate.substring(4, 6);
 		date = mois + "/" + annee;
 		return date;
+	}
+	
+	public static String concatPremierMot(String str) {
+		int i = 0;
+		while(i < str.length() && str.charAt(i) != ' ') {
+			i++;
+		}
+		if(i < str.length() && str.charAt(i) == ' ') {
+			str = str.substring(0, i-1);
+		}
+		return str;
 	}
 }
 

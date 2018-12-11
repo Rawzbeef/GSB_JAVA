@@ -35,7 +35,7 @@ public class ActionMenu implements ActionListener {
 		case "ModifierFrais":
 			vueMsg.reset();
 			vue.getContentPane().removeAll();
-			vue.getContentPane().add(new VueModifierFicheFrais()).revalidate();
+			vue.getContentPane().add(new VueModifierFicheFrais(gsb, vue, vueMsg)).revalidate();
 			break;
 		}
 	}

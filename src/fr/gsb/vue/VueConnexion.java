@@ -1,6 +1,7 @@
 package fr.gsb.vue;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -38,6 +39,7 @@ public class VueConnexion extends JPanel {
 		
 		
 		this.jbConnexion = new JButton("Connexion");
+		this.jbConnexion.setMnemonic(KeyEvent.VK_ENTER);
 		
 		ActionConnexion actionConnexion = new ActionConnexion(this.gsb, this.vue, this.vueMsg, this.jtfIdentifiant, this.jtfMdp);
 		//this.jtfIdentifiant.addKeyListener(actionConnexion);
