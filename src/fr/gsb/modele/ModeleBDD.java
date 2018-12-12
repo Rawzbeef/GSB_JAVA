@@ -272,7 +272,7 @@ public class ModeleBDD {
 			st = connexion.createStatement();
 			rs = st.executeQuery(req);
 			while(rs.next()){
-				liste.add(rs.getString(1));
+				liste.add(Modele.dateVersFrancais(rs.getString(1)));
 			}
 			rs.close();
 			st.close();

@@ -95,7 +95,7 @@ public class VueModifierEtatHF extends JFrame {
 		this.panel2.add(jbValider, c2);
 		
 		// ActionListener du bouton
-		this.jbValider.addActionListener(new ActionEtatAJour(vueMsg, etat, jcbEtat, num));
+		this.jbValider.addActionListener(new ActionEtatAJour(this, vueMsg, etat, jcbEtat, num));
 		
 		// Ajout des 2 panels dans le panel global
 		this.panelGlobal = new JPanel();

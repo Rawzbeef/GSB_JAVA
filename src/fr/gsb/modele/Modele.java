@@ -55,10 +55,9 @@ public class Modele {
 	 * @param list : une liste de chaine de caractère
 	 * @return un tableau de chaine
 	 */
-	public static String[] toTab(ArrayList<String> list, String chaine) {
-		String[] tab = new String[list.size()+1];
-		tab[0] = chaine;
-		int i = 1;
+	public static String[] toTab(ArrayList<String> list) {
+		String[] tab = new String[list.size()];
+		int i = 0;
 		for(String str : list) {
 			tab[i] = str;
 			i++;
@@ -91,7 +90,7 @@ public class Modele {
 			i++;
 		}
 		if(i < str.length() && str.charAt(i) == ' ') {
-			str = str.substring(0, i-1);
+			str = str.substring(0, i);
 		}
 		return str;
 		}

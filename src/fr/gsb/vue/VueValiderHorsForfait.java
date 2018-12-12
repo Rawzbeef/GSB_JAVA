@@ -14,7 +14,6 @@ import fr.gsb.controleur.action.ActionModifierEtatHF;
 public class VueValiderHorsForfait extends JPanel {
 	
 	// Attributs privés de la classe
-	private ArrayList<FraisHorsForfait> lesFrais;
 	private JLabel jlTitre;
 	private JTable tableau;
 	private JScrollPane scroll;
@@ -25,9 +24,7 @@ public class VueValiderHorsForfait extends JPanel {
 
 	
 	// Constructeur de la vue
-	public VueValiderHorsForfait(Vue vue, VueMessage vueMsg, ArrayList<FraisHorsForfait> lesFraisHorsForfait) {
-		
-		this.lesFrais = lesFraisHorsForfait;
+	public VueValiderHorsForfait(Vue vue, VueMessage vueMsg) {
 		
 		this.jlTitre = new JLabel("Descriptif des éléments hors forfait");
 		this.add(jlTitre);
@@ -35,26 +32,12 @@ public class VueValiderHorsForfait extends JPanel {
 		Dimension taille = new Dimension(300, 20);
 		
 		// Creation du tableau
-		Object data[][] = new Object[lesFrais.size()][5];
-		int i = 0;
-		for (FraisHorsForfait f : lesFrais) {
-			data[i][0] = f.getId();
-			data[i][1] = Modele.dateAnglaisVersFrancais(f.getDate());
-			data[i][2] = f.getLibelle();
-			data[i][3] = f.getMontant();
-			data[i][4] = f.getLibelleEtat(f.getEtat());
-			i++;
-		}
+		Object data[][] = new Object[0][5];
 
 		String[] title = {"Num", "Date", "Libellé", "Montant", "Situation"};
 		this.tableau = new JTable(data, title);
-		// Taille par défaut selon le nombre de lignes
-		if (lesFrais.size() < 5) {
-			this.tableau.setPreferredScrollableViewportSize(new Dimension(600, 16*i));
-		}
-		else {
-			this.tableau.setPreferredScrollableViewportSize(new Dimension(600, 80));
-		}
+		// Taille par défaut
+		this.tableau.setPreferredScrollableViewportSize(new Dimension(600, 0));
 		
 		DefaultTableModel tableModel = new DefaultTableModel(data, title) { // Création d'un nouveau modèle pour éditer la méthode
 		    @Override
@@ -75,7 +58,7 @@ public class VueValiderHorsForfait extends JPanel {
 		panel = new JPanel();
 		panelGrid = new JPanel();
 		panelGrid.setLayout(new GridLayout(2,1));
-		jlNbFrais = new JLabel("Nombre total de frais hors forfait : " + lesFrais.size(), JLabel.CENTER);
+		jlNbFrais = new JLabel("Nombre total de frais hors forfait : " + /*lesFrais.size()*/0, JLabel.CENTER);
 		jlNbFrais.setPreferredSize(taille);
 		panel.add(jlNbFrais);
 		
@@ -91,6 +74,10 @@ public class VueValiderHorsForfait extends JPanel {
 		this.jbModifier.addActionListener(new ActionModifierEtatHF(vue, vueMsg, this.tableau));
 		
 		
+	}
+	
+	public JTable getTableau() {
+		return this.tableau;
 	}
 	
 	// Méthode pour centrer les chaines de caractères dans le tableau
