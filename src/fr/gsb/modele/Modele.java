@@ -72,10 +72,10 @@ public class Modele {
 	 * @param laDate
 	 * @return date
 	 */
-	public static String dateVersFrancais(String laDate) {
+	public static String dateVersFrancais(String aaamm) {
 		String date, mois, annee;
-		annee = laDate.substring(0, 4);
-		mois = laDate.substring(4, 6);
+		annee = aaamm.substring(0, 4);
+		mois = aaamm.substring(4, 6);
 		date = mois + "/" + annee;
 		return date;
 	}
@@ -96,7 +96,7 @@ public class Modele {
 		return str;
 		}
 	/**
-	 * Convertit le format date aaaa-mm-jj en jj-mm/aaaa
+	 * Convertit le format date aaaa-mm-jj en jj/mm/aaaa
 	 * 
 	 * @param laDate
 	 * @return date
@@ -107,6 +107,20 @@ public class Modele {
 		mois = laDate.substring(5, 7);
 		jour = laDate.substring(8, 10);
 		date = jour + "/" + mois + "/" + annee;
+		return date;
+	}
+	
+	/**
+	 * Convertit le format date mm/aaaa en aaaamm
+	 * 
+	 * @param laDate
+	 * @return date
+	 */
+	public static String dateFrancaisVersNormal(String laDate) {
+		String date, mois, annee;
+		mois = laDate.substring(0, 2);
+		annee = laDate.substring(3, 7);
+		date = annee + mois;
 		return date;
 	}
 }
