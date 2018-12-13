@@ -114,7 +114,7 @@ public class ModeleBDD {
 				pst.setString(1, visiteur.getId());
 				rs = pst.executeQuery();
 				while(rs.next()){
-					visiteur.setFicheFrais(new FicheFrais(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+					visiteur.setFicheFrais(new FicheFrais(visiteur.getId(), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6)));
 				}
 				rs.close();
 				st.close();
@@ -237,18 +237,21 @@ public class ModeleBDD {
 	 * @param id
 	 * @return lesFichesFrais
 	 */
-	public static ArrayList<FicheFrais> getLesFicheFrais(String id) {
+	public static ArrayList<FicheFrais> getLesFicheFrais(String id,String mois) {
 		connexionBDD();
 		ArrayList<FicheFrais> lesFiches = new ArrayList<FicheFrais>();
 		try {
-			String req = "SELECT * FROM gsb_fichefrais";
-			st = connexion.createStatement();
-			rs = st.executeQuery(req);
+			String req = "SELECT * FROM gsb_fichefrais WHERE idVisiteur = ? and mois = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, id);
+			pst.setString(2, mois);
+			rs = pst.executeQuery();
 			FicheFrais uneFiche;
 			while(rs.next()){
-				uneFiche = new FicheFrais(id, rs.getInt(2), rs.getDouble(3), rs.getString(4), rs.getString(5));
+				uneFiche = new FicheFrais(id, rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getString(5), rs.getString(6));
 				lesFiches.add(uneFiche);
 			}
+
 			rs.close();
 			st.close();
 		} catch (SQLException e) {

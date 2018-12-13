@@ -3,6 +3,7 @@ package fr.gsb.objet;
 public class FicheFrais {
 	
 	// Attributs privés
+	private String id;
 	private String mois;
 	private int nbJustificatifs;
 	private double montantValide;
@@ -20,7 +21,8 @@ public class FicheFrais {
 	 * @param uneDateModif mettre une date qui est la date d'aujourd'hui
 	 * @param unEtat mettre l'état de la fiche de frais qui se compose de deux caractères
 	 */ 
-	public FicheFrais(String unMois, int unNbJustificatifs, double unMontantValide, String uneDateModif, String unEtat) {
+	public FicheFrais(String id, String unMois, int unNbJustificatifs, double unMontantValide, String uneDateModif, String unEtat) {
+		this.id = id;
 		this.mois = unMois; // Format aaaamm
 		this.nbJustificatifs = unNbJustificatifs;
 		this.montantValide = unMontantValide;
@@ -30,6 +32,13 @@ public class FicheFrais {
 
 	// Méthodes
 	// GET
+
+	/**
+	 * Méthode qui permet de retourner l'id
+	 */
+	public String getId() {
+		return this.id;
+	}
 
 	/**
 	 * Méthode qui permet de retourner le mois 
