@@ -8,7 +8,7 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.BoxLayout;
 
 /*
 import utiliser:
@@ -22,96 +22,111 @@ import utiliser:
 
 public class VueAfficherFrais extends JPanel {
 	//JComboBox
-	private JComboBox<String> listeVisiteur;
-	private JComboBox<String> listeMois;
-	private JComboBox<String> listeAnnees;
+	private JComboBox<String> ComboBoxListeVisiteur;
+	private JComboBox<String> ComboBoxlisteMois;
+	private JComboBox<String> ComboBoxlisteAnnees;
 	
 	//label
 	private JLabel barre;
-	private JLabel NomVisiteur;
-	private JLabel PrenomVisiteur;
 	
-	//JTable1
-	private JScrollPane scroll1;
+	//JTable fraisforfait
+	private JScrollPane scrollFraisforfait;
+	private JTable tableFraisforfait;
+	
+	//JTableFicheFrais
+	private JScrollPane scrollFicheFrais;
 	private JTable tableFicheFrais;
 	
 	
-	//JTable2
-	private JScrollPane scroll2;
+	//JTableFicheHorsForfait
+	private JScrollPane scrollFicheHorsForfait;
 	private JTable tableFicheHorsForfait;
 	
 	
 	//JPanel
 	private JPanel JPNorth;
 	private JPanel JPCenter;
+	private JPanel JPCenterSouth;
+
 	
-	//DefaultTableModel ;
+	//DefaultTableModel 
+	private DefaultTableModel modelFraisforfait;
 	private DefaultTableModel modelFicheFrais;
-	private DefaultTableModel modelficheHorsForfait;
+	private DefaultTableModel modelFicheHorsForfait;
 	
 	
 	
 	public VueAfficherFrais(){
 		this.setLayout(new BorderLayout());
-		
 		JPNorth = new JPanel();
+		JPNorth.setLayout(new BoxLayout(JPNorth, BoxLayout.LINE_AXIS));
 		JPCenter = new JPanel();
+		JPCenterSouth = new JPanel();
 		
 		//JLabel
 		barre = new JLabel (" / ");
-		NomVisiteur=new JLabel ();
-		PrenomVisiteur= new JLabel ();
-		
 		//Partie Jpanel NORTH
 		//listAnnees 
-		listeAnnees = new JComboBox<String>();
-		listeAnnees.setPreferredSize(new Dimension(100,20));
-		listeAnnees.setEnabled(false);
+		ComboBoxlisteAnnees = new JComboBox<String>();
+		ComboBoxlisteAnnees.setPreferredSize(new Dimension(100,20));
+		ComboBoxlisteAnnees.setEnabled(false);
 		
 		
 		//listMois 
 		String[] tabMois = {"01", "02", "03", "04","05","06","07","08","09","10","11","12"};
-		listeMois = new JComboBox<String>(tabMois);
-		listeMois.setPreferredSize(new Dimension(100,20));
+		ComboBoxlisteMois = new JComboBox<String>(tabMois);
+		ComboBoxlisteMois.setPreferredSize(new Dimension(100,20));
 		
 		
 		//IdlisteVisiteur
-		listeVisiteur = new JComboBox<String>();
-		listeVisiteur.setPreferredSize(new Dimension(100,20));
+		ComboBoxListeVisiteur = new JComboBox<String>();
+		ComboBoxListeVisiteur.setPreferredSize(new Dimension(100,20));
 		
-		//table 1
+		
+		//tableFraisforfait
+		modelFraisforfait =new DefaultTableModel();
+		tableFraisforfait= new JTable(modelFraisforfait);
+		modelFraisforfait.addColumn("Fraisforfait:");
+		modelFraisforfait.addColumn("libele");
+		modelFraisforfait.addColumn("montant");
+		scrollFraisforfait = new JScrollPane(tableFraisforfait);
+		
+		//tableFicheFrais
 		modelFicheFrais =new DefaultTableModel();
 		tableFicheFrais= new JTable(modelFicheFrais);
-		modelFicheFrais.addColumn("mois");
+		modelFicheFrais.addColumn("FicheFrais");
 		modelFicheFrais.addColumn("NbJustificatifs");
 		modelFicheFrais.addColumn("MontantValide");
 		modelFicheFrais.addColumn("DateModif");
 		modelFicheFrais.addColumn("Etat");
-		scroll1 = new JScrollPane(tableFicheFrais);
+		scrollFicheFrais = new JScrollPane(tableFicheFrais);
 		
-		//table2
-		modelficheHorsForfait =new DefaultTableModel();
-		tableFicheHorsForfait= new JTable(modelficheHorsForfait);
-		modelficheHorsForfait.addColumn("mois");
-		modelficheHorsForfait.addColumn("libelle");
-		modelficheHorsForfait.addColumn("date");
-		modelficheHorsForfait.addColumn("montant");
-		modelficheHorsForfait.addColumn("etat");
-		scroll2 = new JScrollPane(tableFicheHorsForfait);
-		
+		//tableFicheHorsForfait
+		modelFicheHorsForfait =new DefaultTableModel();
+		tableFicheHorsForfait= new JTable(modelFicheHorsForfait);
+		modelFicheHorsForfait.addColumn("FicheHorsForfait");
+		modelFicheHorsForfait.addColumn("libelle");
+		modelFicheHorsForfait.addColumn("date");
+		modelFicheHorsForfait.addColumn("montant");
+		modelFicheHorsForfait.addColumn("etat");
+		scrollFicheHorsForfait = new JScrollPane(tableFicheHorsForfait);
+
 		//ajout dans leJPNorth
-		JPNorth.add(this.listeMois);
+
+		JPCenter.add(this.scrollFraisforfait);
+		JPCenterSouth.add(this.scrollFicheFrais);
+		JPCenterSouth.add(this.scrollFicheHorsForfait);
+		JPCenter.add(JPCenterSouth, BorderLayout.SOUTH);
+		
+		
+		JPNorth.add(this.ComboBoxlisteMois);
 		JPNorth.add(this.barre);
-		JPNorth.add(this.listeAnnees);
-		JPNorth.add(this.listeVisiteur);
-		
-		JPCenter.add(this.scroll1);
-		JPCenter.add(this.scroll2);
-		
+		JPNorth.add(this.ComboBoxlisteAnnees);
+		JPNorth.add(this.ComboBoxListeVisiteur);
 		// ajout action listener
-		listeMois.addActionListener(new ActionVueAfficherFrais(listeMois, listeAnnees, listeVisiteur, "Mois", NomVisiteur, PrenomVisiteur, tableFicheFrais, tableFicheHorsForfait));
-		listeAnnees.addActionListener(new ActionVueAfficherFrais(listeMois, listeAnnees, listeVisiteur, "Annees", NomVisiteur, PrenomVisiteur, tableFicheFrais, tableFicheHorsForfait));
-		listeVisiteur.addActionListener(new ActionVueAfficherFrais(listeMois, listeAnnees, listeVisiteur, "Visiteur", NomVisiteur, PrenomVisiteur, tableFicheFrais, tableFicheHorsForfait));
+		ComboBoxlisteMois.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Mois", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
+		ComboBoxlisteAnnees.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Annees", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
+		ComboBoxListeVisiteur.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Visiteur", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
 		
 		
 		//ajout dans le PanelPrinciapl
