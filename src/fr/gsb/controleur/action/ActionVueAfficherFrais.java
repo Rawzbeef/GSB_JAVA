@@ -22,11 +22,11 @@ import fr.gsb.objet.Visiteur;
 
 
 public class ActionVueAfficherFrais implements ActionListener{
-	
+
 	//Jtable pour la Fraisforfait
 	private JTable  tableFraisforfait;
 	private Object [] donneesFraisforfait;
-	
+
 	//Jtable pour la FicheFrais
 	private JTable tableFicheFrais;
 	private Object [] donneesFicheFrais;
@@ -50,7 +50,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 	private DefaultTableModel unNewModelFraisforfait;
 	private DefaultTableModel unNewModelFicheFrais;
 	private DefaultTableModel unNewModelficheHorsForfait;
-	
+
 	//autre variable
 	private String annees;
 	private String mois;
@@ -73,6 +73,8 @@ public class ActionVueAfficherFrais implements ActionListener{
 	public void actionPerformed(ActionEvent event) {
 		//switch qui prend en compte l'attribue mot qui est donnée en paramettre
 		switch(mot){
+
+		//cas ou le mot envoier a l'action est mois
 		case "Mois":
 			String[] tabAnnees = {"2018", "2017", "2016", "2015","2014","2013","2012","2011","2010","2009","2008","2007"};
 			ComboBoxAnnees.removeAllItems();
@@ -85,6 +87,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 
 			break;
 
+			//cas ou le mot envoier a l'action est annees
 		case "Annees":
 			mois=(String)ComboBoxMois.getSelectedItem();
 			annees=(String)ComboBoxAnnees.getSelectedItem();
@@ -104,14 +107,14 @@ public class ActionVueAfficherFrais implements ActionListener{
 			ComboBoxVisiteur.revalidate();
 			break;
 
-
+			//cas ou le mot envoier a l'action est visiteur
 		case "Visiteur":
 			//enteteFicheFrais
 			mois=(String)ComboBoxMois.getSelectedItem();
 			annees=(String)ComboBoxAnnees.getSelectedItem();
 			anneesMois=annees+mois;
-			
-			
+
+
 			//Fraisforfait
 			LesLigneFraisforfait=ModeleBDD.getLesLignefraisforfait((String)ComboBoxVisiteur.getSelectedItem(),anneesMois);
 			unNewModelFraisforfait = new DefaultTableModel();
@@ -119,6 +122,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 			unNewModelFraisforfait.addColumn("libelle");
 			unNewModelFraisforfait.addColumn("Quantite");
 			donneesFraisforfait = new Object[3];
+			
 			for (Lignefraisforfait unFraisForfait : LesLigneFraisforfait) {
 				donneesFraisforfait[0]= donneesFraisforfait[0] = "";
 				donneesFraisforfait[1] = unFraisForfait.getLibelleFraiForfait().getLibelle();
@@ -126,7 +130,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 				unNewModelFraisforfait.addRow(donneesFraisforfait);
 			}
 			tableFraisforfait.setModel(unNewModelFraisforfait);
-			
+
 			//ficheFrais
 			lesFicheFrais=ModeleBDD.getLesFicheFrais((String)ComboBoxVisiteur.getSelectedItem(),anneesMois);
 			unNewModelFicheFrais = new DefaultTableModel();
@@ -136,6 +140,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 			unNewModelFicheFrais.addColumn("DateModif");
 			unNewModelFicheFrais.addColumn("Etat");
 			donneesFicheFrais = new Object[5];
+			
 			for (FicheFrais unFicheFrais : lesFicheFrais) {
 				donneesFicheFrais[0] =  "";
 				donneesFicheFrais[1] = unFicheFrais.getNbJustificatifs();
@@ -145,10 +150,8 @@ public class ActionVueAfficherFrais implements ActionListener{
 				unNewModelFicheFrais.addRow(donneesFicheFrais);
 			}
 			tableFicheFrais.setModel(unNewModelFicheFrais);
-			
-			
-			
-			
+
+
 			//ficheFraisHorsForfait
 			lesFicheFraisHorsForfait=ModeleBDD.getLesFraisHorsForfaits(anneesMois,(String)ComboBoxVisiteur.getSelectedItem());
 			unNewModelficheHorsForfait=new DefaultTableModel();
@@ -158,6 +161,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 			unNewModelficheHorsForfait.addColumn("montant");
 			unNewModelficheHorsForfait.addColumn("etat");
 			donneesFicheFraisHorsForfait= new Object[5];
+			
 			for (FraisHorsForfait unFraisHorsForfait : lesFicheFraisHorsForfait) {
 				donneesFicheFraisHorsForfait[0] =  "";
 				donneesFicheFraisHorsForfait[1] = unFraisHorsForfait.getLibelle();
@@ -167,9 +171,6 @@ public class ActionVueAfficherFrais implements ActionListener{
 				unNewModelficheHorsForfait.addRow(donneesFicheFraisHorsForfait);
 			}
 			tableFicheFraisHorsForfait.setModel(unNewModelficheHorsForfait);
-
-
-
 			break;
 		}
 	}
