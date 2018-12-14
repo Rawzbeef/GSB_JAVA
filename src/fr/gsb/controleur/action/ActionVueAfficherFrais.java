@@ -2,7 +2,6 @@
 package fr.gsb.controleur.action;
 
 //import java et javax
-import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
@@ -11,13 +10,23 @@ import javax.swing.table.DefaultTableModel;
 
 
 
+
 //import gsb
 import fr.gsb.modele.ModeleBDD;
+import fr.gsb.objet.FraisForfait;
 import fr.gsb.objet.FicheFrais;
 import fr.gsb.objet.FraisHorsForfait;
+import fr.gsb.objet.Lignefraisforfait;
 import fr.gsb.objet.Visiteur;
 
+
+
 public class ActionVueAfficherFrais implements ActionListener{
+	
+	//Jtable pour la Fraisforfait
+	private JTable  tableFraisforfait;
+	private Object [] donneesFraisforfait;
+	
 	//Jtable pour la FicheFrais
 	private JTable tableFicheFrais;
 	private Object [] donneesFicheFrais;
@@ -26,10 +35,6 @@ public class ActionVueAfficherFrais implements ActionListener{
 	private JTable tableFicheFraisHorsForfait;
 	private Object [] donneesFicheFraisHorsForfait;
 
-	//JScrollPane
-	private JScrollPane scrollFicheFrais;
-	private JScrollPane scrollFicheFraisHorsForfait;
-
 	//JComboBox
 	private JComboBox<String> ComboBoxVisiteur;
 	private JComboBox<String> ComboBoxMois;
@@ -37,10 +42,12 @@ public class ActionVueAfficherFrais implements ActionListener{
 
 	//Les Listes
 	private ArrayList<Visiteur> visiteurMois;
+	private ArrayList<Lignefraisforfait> LesLigneFraisforfait;
 	private ArrayList<FicheFrais> lesFicheFrais;
 	private ArrayList<FraisHorsForfait> lesFicheFraisHorsForfait;
 
 	// Modele
+	private DefaultTableModel unNewModelFraisforfait;
 	private DefaultTableModel unNewModelFicheFrais;
 	private DefaultTableModel unNewModelficheHorsForfait;
 	
@@ -51,13 +58,14 @@ public class ActionVueAfficherFrais implements ActionListener{
 	private String anneesMois;
 	private String idVisiteur;
 
-	public ActionVueAfficherFrais(JComboBox<String> uneComboBoxMois ,JComboBox<String> uneComboBoxAnnees ,JComboBox<String> uneComboBoxVisiteur,String unMot, JLabel unNomVisiteur, JLabel unPrenomVisiteur, JTable uneTable1, JTable uneTable2) {
+	public ActionVueAfficherFrais(JComboBox<String> uneComboBoxMois ,JComboBox<String> uneComboBoxAnnees ,JComboBox<String> uneComboBoxVisiteur,String unMot, JTable uneTableFraisforfait, JTable uneTableFicheFrais, JTable uneTableFicheFraisHorsForfait) {
 		this.ComboBoxMois=uneComboBoxMois;
 		this.ComboBoxAnnees=uneComboBoxAnnees;
 		this.ComboBoxVisiteur=uneComboBoxVisiteur;
 		this.mot=unMot;
-		this.tableFicheFrais=uneTable1;
-		this.tableFicheFraisHorsForfait=uneTable2;
+		this.tableFraisforfait=uneTableFraisforfait;
+		this.tableFicheFrais=uneTableFicheFrais;
+		this.tableFicheFraisHorsForfait=uneTableFicheFraisHorsForfait;
 	}
 
 	@Override
@@ -103,16 +111,33 @@ public class ActionVueAfficherFrais implements ActionListener{
 			annees=(String)ComboBoxAnnees.getSelectedItem();
 			anneesMois=annees+mois;
 			
+			
+			//Fraisforfait
+			LesLigneFraisforfait=ModeleBDD.getLesLignefraisforfait((String)ComboBoxVisiteur.getSelectedItem(),anneesMois);
+			unNewModelFraisforfait = new DefaultTableModel();
+			unNewModelFraisforfait.addColumn("Fraisforfait:");
+			unNewModelFraisforfait.addColumn("libelle");
+			unNewModelFraisforfait.addColumn("Quantite");
+			donneesFraisforfait = new Object[3];
+			for (Lignefraisforfait unFraisForfait : LesLigneFraisforfait) {
+				donneesFraisforfait[0]= donneesFraisforfait[0] = "";
+				donneesFraisforfait[1] = unFraisForfait.getLibelleFraiForfait().getLibelle();
+				donneesFraisforfait[2] = unFraisForfait.getQuantite();
+				unNewModelFraisforfait.addRow(donneesFraisforfait);
+			}
+			tableFraisforfait.setModel(unNewModelFraisforfait);
+			
+			//ficheFrais
 			lesFicheFrais=ModeleBDD.getLesFicheFrais((String)ComboBoxVisiteur.getSelectedItem(),anneesMois);
-			unNewModelFicheFrais=new DefaultTableModel();
-			unNewModelFicheFrais.addColumn("mois");
+			unNewModelFicheFrais = new DefaultTableModel();
+			unNewModelFicheFrais.addColumn("FicheFrais");
 			unNewModelFicheFrais.addColumn("NbJustificatifs");
 			unNewModelFicheFrais.addColumn("MontantValide");
 			unNewModelFicheFrais.addColumn("DateModif");
 			unNewModelFicheFrais.addColumn("Etat");
 			donneesFicheFrais = new Object[5];
 			for (FicheFrais unFicheFrais : lesFicheFrais) {
-				donneesFicheFrais[0] = unFicheFrais.getMois();
+				donneesFicheFrais[0] =  "";
 				donneesFicheFrais[1] = unFicheFrais.getNbJustificatifs();
 				donneesFicheFrais[2] = unFicheFrais.getDateModif();
 				donneesFicheFrais[3] = unFicheFrais.getMontantValide();
@@ -122,17 +147,19 @@ public class ActionVueAfficherFrais implements ActionListener{
 			tableFicheFrais.setModel(unNewModelFicheFrais);
 			
 			
+			
+			
+			//ficheFraisHorsForfait
 			lesFicheFraisHorsForfait=ModeleBDD.getLesFraisHorsForfaits(anneesMois,(String)ComboBoxVisiteur.getSelectedItem());
 			unNewModelficheHorsForfait=new DefaultTableModel();
-			unNewModelficheHorsForfait=new DefaultTableModel();
-			unNewModelficheHorsForfait.addColumn("mois");
+			unNewModelficheHorsForfait.addColumn("ficheHorsForfait");
 			unNewModelficheHorsForfait.addColumn("libelle");
 			unNewModelficheHorsForfait.addColumn("date");
 			unNewModelficheHorsForfait.addColumn("montant");
 			unNewModelficheHorsForfait.addColumn("etat");
 			donneesFicheFraisHorsForfait= new Object[5];
 			for (FraisHorsForfait unFraisHorsForfait : lesFicheFraisHorsForfait) {
-				donneesFicheFraisHorsForfait[0] = unFraisHorsForfait.getMois();
+				donneesFicheFraisHorsForfait[0] =  "";
 				donneesFicheFraisHorsForfait[1] = unFraisHorsForfait.getLibelle();
 				donneesFicheFraisHorsForfait[2] = unFraisHorsForfait.getDate();
 				donneesFicheFraisHorsForfait[3] = unFraisHorsForfait.getMontant();

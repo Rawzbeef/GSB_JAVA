@@ -14,7 +14,7 @@ public class Vue extends JFrame{
 		this.setTitle("Application GSB");
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(800, 600);
+		this.setSize(1000, 1000);
 		this.setResizable(false);	
 		
 		this.panel = new VueConnexion(gsb, this, vueMsg);

@@ -286,4 +286,33 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return liste;
 	}
+	/**
+	 * Retourne tous les mois des fiches de frais
+	 * 
+	 * @return Liste de mois sous format mmaaaa
+	 */
+	public static ArrayList<Lignefraisforfait> getLesLignefraisforfait(String unidVisiteur,String unMois) {
+		connexionBDD();
+		ArrayList<Lignefraisforfait> liste2 = new ArrayList<Lignefraisforfait>();
+		try {
+			String req = "select libelle,quantite from gsb_lignefraisforfait,gsb_fraisforfait where gsb_lignefraisforfait.idFraisForfait = gsb_fraisforfait.id and idVisiteur= ? and mois= ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, unidVisiteur);
+			pst.setString(2, unMois);
+			rs = pst.executeQuery();
+			while(rs.next()){ 
+				FraisForfait unFraiForfait=new FraisForfait(req,rs.getString(1), 0);
+				Lignefraisforfait uneFiche = new Lignefraisforfait(null, null, null, rs.getInt(2), unFraiForfait);
+				liste2.add(uneFiche);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return liste2;
+	}
+	//fraisforfait
 }
