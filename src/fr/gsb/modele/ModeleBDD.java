@@ -286,4 +286,79 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return liste;
 	}
+
+	public static ArrayList<String> getLigneFrais(String id, String mois) {
+		connexionBDD();
+		ArrayList<String> liste = new ArrayList<String>();
+		try {
+			String req = "SELECT quantite FROM gsb_lignefraisforfait WHERE idVisiteur = ? AND mois = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, id);
+			pst.setString(2, mois);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				liste.add(rs.getString(1));
+			}
+			rs.close();
+			pst.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return liste;
+	}
+
+	public static void UpdateLaFicheFrais(String id, String mois, int etp, int km, int nui, int rep, String etat) {
+		connexionBDD();
+		try {
+			String req1 = "UPDATE gsb_lignefraisforfait SET quantite = ? WHERE idVisiteur = ? AND mois = ? AND idFraisForfait = 'ETP';";
+			String req2 = "UPDATE gsb_lignefraisforfait SET quantite = ? WHERE idVisiteur = ? AND mois = ? AND idFraisForfait = 'KM';";
+			String req3 = "UPDATE gsb_lignefraisforfait SET quantite = ? WHERE idVisiteur = ? AND mois = ? AND idFraisForfait = 'NUI';";
+			String req4 = "UPDATE gsb_lignefraisforfait SET quantite = ? WHERE idVisiteur = ? AND mois = ? AND idFraisForfait = 'REP';";
+			String req5 = "UPDATE gsb_fichefrais SET idEtat = ? WHERE idVisiteur = ? AND mois = ?;";
+			pst = connexion.prepareStatement(req1);
+			pst.setInt(1, etp);
+			pst.setString(2, id);
+			pst.setString(3, mois);
+			
+			pst.executeUpdate();
+			pst.close();
+			
+			pst = connexion.prepareStatement(req2);
+			pst.setInt(1, km);
+			pst.setString(2, id);
+			pst.setString(3, mois);
+			
+			pst.executeUpdate();
+			pst.close();
+			
+			pst = connexion.prepareStatement(req3);
+			pst.setInt(1, nui);
+			pst.setString(2, id);
+			pst.setString(3, mois);
+			
+			pst.executeUpdate();
+			pst.close();
+			
+			pst = connexion.prepareStatement(req4);
+			pst.setInt(1, rep);
+			pst.setString(2, id);
+			pst.setString(3, mois);
+			
+			pst.executeUpdate();
+			pst.close();
+			
+			pst = connexion.prepareStatement(req5);
+			pst.setString(1, etat);
+			pst.setString(2, id);
+			pst.setString(3, mois);
+			
+			pst.executeUpdate();
+			pst.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		deconnexionBDD();
+	}
 }

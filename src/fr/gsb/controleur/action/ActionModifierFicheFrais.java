@@ -21,7 +21,7 @@ import fr.gsb.vue.VueModifierFicheFrais;
 import fr.gsb.vue.VueValiderHorsForfait;
 
 public class ActionModifierFicheFrais implements ActionListener {
-	
+
 	private Gsb gsb;
 	private Vue vue;
 	private VueModifierFicheFrais vueModifierFicheFrais;
@@ -29,7 +29,7 @@ public class ActionModifierFicheFrais implements ActionListener {
 	private String code;
 	private JComboBox<String> jcbMois;
 	private JComboBox<String> jcbVisiteur;
-	
+
 	public ActionModifierFicheFrais(Gsb gsb, Vue vue, VueModifierFicheFrais vueModifierFicheFrais, VueMessage vueMsg, String code, JComboBox<String> jcbMois, JComboBox<String> jcbVisiteur) {
 		this.gsb = gsb;
 		this.vue = vue;
@@ -39,7 +39,7 @@ public class ActionModifierFicheFrais implements ActionListener {
 		this.jcbMois = jcbMois;
 		this.jcbVisiteur = jcbVisiteur;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		vueMsg.reset();
@@ -57,33 +57,42 @@ public class ActionModifierFicheFrais implements ActionListener {
 			this.jcbVisiteur.setEnabled(true);
 			break;
 		case "Visiteur":
-			JTable tableau = this.vueModifierFicheFrais.getVueValiderHorsForfait().getTableau();
-			String[] title = {"Num", "Date", "Libellé", "Montant", "Situation"};
-			DefaultTableModel tableModel = new DefaultTableModel(title, 0);
-			String id = Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString());
-			ArrayList<FraisHorsForfait> lesFrais = ModeleBDD.getLesFraisHorsForfaits(Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString()), id);
-			int i = 0;
-			for (FraisHorsForfait f : lesFrais) {
-				int idF = f.getId();
-				String date = Modele.dateAnglaisVersFrancais(f.getDate());
-				String libelle = f.getLibelle();
-				double montant = f.getMontant();
-				String situation = f.getLibelleEtat(f.getEtat());
-				Object[] data = {idF ,date, libelle, montant, situation};
-				tableModel.addRow(data);
-				i++;
+
+			if(this.jcbVisiteur.getSelectedItem() != null) {
+				String id = Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString());
+				JTable tableau = this.vueModifierFicheFrais.getVueValiderHorsForfait().getTableau();
+				String[] title = {"Num", "Date", "Libellé", "Montant", "Situation"};
+				DefaultTableModel tableModel = new DefaultTableModel(title, 0);
+
+				ArrayList<FraisHorsForfait> lesFrais = ModeleBDD.getLesFraisHorsForfaits(Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString()), id);
+				int i = 0;
+				for (FraisHorsForfait f : lesFrais) {
+					int idF = f.getId();
+					String date = Modele.dateAnglaisVersFrancais(f.getDate());
+					String libelle = f.getLibelle();
+					double montant = f.getMontant();
+					String situation = f.getLibelleEtat(f.getEtat());
+					Object[] data = {idF ,date, libelle, montant, situation};
+					tableModel.addRow(data);
+					i++;
+				}
+				if (lesFrais.size() < 5) {
+					tableau.setPreferredScrollableViewportSize(new Dimension(600, 16*i));
+				}
+				else {
+					tableau.setPreferredScrollableViewportSize(new Dimension(600, 80));
+				}
+				tableau.setModel(tableModel);
+				tableau.revalidate();
+				
+				vueModifierFicheFrais.afficheFrais();
 			}
-			if (lesFrais.size() < 5) {
-				tableau.setPreferredScrollableViewportSize(new Dimension(600, 16*i));
-			}
-			else {
-				tableau.setPreferredScrollableViewportSize(new Dimension(600, 80));
-			}
-			tableau.setModel(tableModel);
-			tableau.revalidate();
 			break;
+		case "Valider":
+			String id = Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString());
+			String mois = Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString());
+			ModeleBDD.UpdateLaFicheFrais(id, mois, this.vueModifierFicheFrais.getETP(), this.vueModifierFicheFrais.getKM(), this.vueModifierFicheFrais.getNUI(), this.vueModifierFicheFrais.getREP(), this.vueModifierFicheFrais.getEtat());
 		}
 		
 	}
-
 }
