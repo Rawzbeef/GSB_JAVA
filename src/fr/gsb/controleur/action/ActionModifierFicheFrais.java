@@ -91,7 +91,7 @@ public class ActionModifierFicheFrais implements ActionListener {
 		case "Valider":
 			String id = Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString());
 			String mois = Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString());
-			ModeleBDD.UpdateLaFicheFrais(id, mois, this.vueModifierFicheFrais.getETP(), this.vueModifierFicheFrais.getKM(), this.vueModifierFicheFrais.getNUI(), this.vueModifierFicheFrais.getREP(), this.vueModifierFicheFrais.getEtat());
+			ModeleBDD.updateLaFicheFrais(id, mois, this.vueModifierFicheFrais.getETP(), this.vueModifierFicheFrais.getKM(), this.vueModifierFicheFrais.getNUI(), this.vueModifierFicheFrais.getREP(), this.vueModifierFicheFrais.getEtat());
 		}
 		
 	}

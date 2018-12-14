@@ -95,11 +95,11 @@ public class ModeleBDD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
-	
+
 	/**
 	 * Permet d'effectuer les liens objet entre les fiches frais et les visiteurs
 	 * 
@@ -125,7 +125,7 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
-	
+
 	/**
 	 * Permet de renvoyer une liste de Visiteur selon un mois donné
 	 * 
@@ -148,7 +148,7 @@ public class ModeleBDD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		deconnexionBDD();
 		return lesIds;
 	}
@@ -176,7 +176,7 @@ public class ModeleBDD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
@@ -209,7 +209,7 @@ public class ModeleBDD {
 		return lesFrais;
 
 	}
-	
+
 	/**
 	 * Met à jour l'état de l'élément hors forfait
 	 * 
@@ -230,7 +230,7 @@ public class ModeleBDD {
 		}
 		deconnexionBDD();
 	}
-	
+
 	/**
 	 * Retourne les fiches de frais selon l'id d'un visiteur (Affichage des fiches de frais)
 	 * 
@@ -261,7 +261,7 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesFiches;
 	}
-	
+
 	/**
 	 * Retourne tous les mois des fiches de frais
 	 * 
@@ -286,7 +286,6 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return liste;
 	}
-//<<<<<<< HEAD
 
 	public static ArrayList<String> getLigneFrais(String id, String mois) {
 		connexionBDD();
@@ -302,7 +301,15 @@ public class ModeleBDD {
 			}
 			rs.close();
 			pst.close();
-//=======
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return liste;
+	}
+
+
 	/**
 	 * Retourne tous les mois des fiches de frais
 	 * 
@@ -324,17 +331,16 @@ public class ModeleBDD {
 			}
 			rs.close();
 			st.close();
-//>>>>>>> 64100de90e9c23053789bd0c792f5fd31fbb5b0c
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		deconnexionBDD();
-//<<<<<<< HEAD
-		return liste;
+		return liste2;
 	}
 
-	public static void UpdateLaFicheFrais(String id, String mois, int etp, int km, int nui, int rep, String etat) {
+	public static void updateLaFicheFrais(String id, String mois, int etp, int km, int nui, int rep, String etat) {
 		connexionBDD();
 		try {
 			String req1 = "UPDATE gsb_lignefraisforfait SET quantite = ? WHERE idVisiteur = ? AND mois = ? AND idFraisForfait = 'ETP';";
@@ -346,39 +352,39 @@ public class ModeleBDD {
 			pst.setInt(1, etp);
 			pst.setString(2, id);
 			pst.setString(3, mois);
-			
+
 			pst.executeUpdate();
 			pst.close();
-			
+
 			pst = connexion.prepareStatement(req2);
 			pst.setInt(1, km);
 			pst.setString(2, id);
 			pst.setString(3, mois);
-			
+
 			pst.executeUpdate();
 			pst.close();
-			
+
 			pst = connexion.prepareStatement(req3);
 			pst.setInt(1, nui);
 			pst.setString(2, id);
 			pst.setString(3, mois);
-			
+
 			pst.executeUpdate();
 			pst.close();
-			
+
 			pst = connexion.prepareStatement(req4);
 			pst.setInt(1, rep);
 			pst.setString(2, id);
 			pst.setString(3, mois);
-			
+
 			pst.executeUpdate();
 			pst.close();
-			
+
 			pst = connexion.prepareStatement(req5);
 			pst.setString(1, etat);
 			pst.setString(2, id);
 			pst.setString(3, mois);
-			
+
 			pst.executeUpdate();
 			pst.close();
 		} catch (SQLException e) {
@@ -386,9 +392,5 @@ public class ModeleBDD {
 		}
 		deconnexionBDD();
 	}
-//=======
-		return liste2;
-	}
-	//fraisforfait
-//>>>>>>> 64100de90e9c23053789bd0c792f5fd31fbb5b0c
+
 }
