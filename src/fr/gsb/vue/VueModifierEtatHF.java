@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import fr.gsb.controleur.action.ActionEtatAJour;
 
+@SuppressWarnings("serial")
 public class VueModifierEtatHF extends JFrame {
 	
 	private JPanel panelGlobal;
@@ -21,7 +22,7 @@ public class VueModifierEtatHF extends JFrame {
 	private JPanel panel2;
 	private JLabel jlTitre2;
 	private JLabel jlEtat;
-	private JComboBox jcbEtat;
+	private JComboBox<String> jcbEtat;
 	private JButton jbValider;
 
 	public VueModifierEtatHF(VueMessage vueMsg, String num, String date, String lib, String montant, String etat) {
@@ -69,7 +70,7 @@ public class VueModifierEtatHF extends JFrame {
 		this.jlTitre2 = new JLabel("Modification de l'état");
 		this.jlEtat = new JLabel("Etat : ");
 		String[] listeItems = {"En attente", "Validé", "Refusé"};
-		this.jcbEtat = new JComboBox(listeItems);
+		this.jcbEtat = new JComboBox<String>(listeItems);
 		this.jbValider = new JButton("Valider");
 		
 		this.panel2.setLayout(new GridBagLayout());

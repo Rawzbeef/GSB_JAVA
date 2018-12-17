@@ -2,8 +2,6 @@ package fr.gsb.objet;
 
 import java.util.ArrayList;
 
-import fr.gsb.modele.ModeleBDD;
-
 public class Visiteur {
 	
 	private String id;

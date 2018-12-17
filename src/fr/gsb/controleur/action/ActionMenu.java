@@ -2,11 +2,8 @@ package fr.gsb.controleur.action;
 
 import java.awt.event.*;
 
-import javax.swing.*;
-
 import fr.gsb.vue.*;
 import fr.gsb.objet.*;
-import fr.gsb.modele.*;
 
 public class ActionMenu implements ActionListener {
 	

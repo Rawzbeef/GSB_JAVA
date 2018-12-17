@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
 
 //import gsb
 import fr.gsb.modele.ModeleBDD;
-import fr.gsb.objet.FraisForfait;
 import fr.gsb.objet.FicheFrais;
 import fr.gsb.objet.FraisHorsForfait;
 import fr.gsb.objet.Lignefraisforfait;

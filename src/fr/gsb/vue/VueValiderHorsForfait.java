@@ -2,15 +2,12 @@ package fr.gsb.vue;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.*;
-
 import javax.swing.*;
 import javax.swing.table.*;
 
-import fr.gsb.modele.Modele;
-import fr.gsb.objet.FraisHorsForfait;
 import fr.gsb.controleur.action.ActionModifierEtatHF;
 
+@SuppressWarnings("serial")
 public class VueValiderHorsForfait extends JPanel {
 	
 	// Attributs privés de la classe

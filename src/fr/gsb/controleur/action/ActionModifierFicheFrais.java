@@ -8,31 +8,25 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import fr.gsb.modele.Modele;
 import fr.gsb.modele.ModeleBDD;
 import fr.gsb.objet.FraisHorsForfait;
 import fr.gsb.objet.Gsb;
 import fr.gsb.objet.Visiteur;
-import fr.gsb.vue.Vue;
 import fr.gsb.vue.VueMessage;
 import fr.gsb.vue.VueModifierFicheFrais;
-import fr.gsb.vue.VueValiderHorsForfait;
 
 public class ActionModifierFicheFrais implements ActionListener {
 
 	private Gsb gsb;
-	private Vue vue;
 	private VueModifierFicheFrais vueModifierFicheFrais;
 	private VueMessage vueMsg;
 	private String code;
 	private JComboBox<String> jcbMois;
 	private JComboBox<String> jcbVisiteur;
 
-	public ActionModifierFicheFrais(Gsb gsb, Vue vue, VueModifierFicheFrais vueModifierFicheFrais, VueMessage vueMsg, String code, JComboBox<String> jcbMois, JComboBox<String> jcbVisiteur) {
+	public ActionModifierFicheFrais(Gsb gsb, VueModifierFicheFrais vueModifierFicheFrais, VueMessage vueMsg, String code, JComboBox<String> jcbMois, JComboBox<String> jcbVisiteur) {
 		this.gsb = gsb;
-		this.vue = vue;
 		this.vueModifierFicheFrais = vueModifierFicheFrais;
 		this.vueMsg = vueMsg;
 		this.code = code;
@@ -89,10 +83,14 @@ public class ActionModifierFicheFrais implements ActionListener {
 			}
 			break;
 		case "Valider":
+			if(this.vueModifierFicheFrais.getETP() != null && this.vueModifierFicheFrais.getKM() != null && this.vueModifierFicheFrais.getNUI() != null && this.vueModifierFicheFrais.getREP() != null) {
 			String id = Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString());
 			String mois = Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString());
 			ModeleBDD.updateLaFicheFrais(id, mois, this.vueModifierFicheFrais.getETP(), this.vueModifierFicheFrais.getKM(), this.vueModifierFicheFrais.getNUI(), this.vueModifierFicheFrais.getREP(), this.vueModifierFicheFrais.getEtat());
+			}
+			else {
+				this.vueMsg.addLabelErreur("Un champ est incorrect");
+			}
 		}
-		
 	}
 }

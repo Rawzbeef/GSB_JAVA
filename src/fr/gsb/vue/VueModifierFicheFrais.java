@@ -1,7 +1,6 @@
 package fr.gsb.vue;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -58,15 +57,19 @@ public class VueModifierFicheFrais extends JPanel {
 		
 		this.jtfForfaisEtape = new JTextField();
 		this.jtfForfaisEtape.setPreferredSize(new Dimension(100, 20));
+		this.jtfForfaisEtape.setEnabled(false);
 		
 		this.jtfFraisKilométrique = new JTextField();
 		this.jtfFraisKilométrique.setPreferredSize(new Dimension(100, 20));
+		this.jtfFraisKilométrique.setEnabled(false);
 		
 		this.jtfNuitéeHôtel = new JTextField();
 		this.jtfNuitéeHôtel.setPreferredSize(new Dimension(100, 20));
+		this.jtfNuitéeHôtel.setEnabled(false);
 		
 		this.jtfRepasRestaurant = new JTextField();
 		this.jtfRepasRestaurant.setPreferredSize(new Dimension(100, 20));
+		this.jtfRepasRestaurant.setEnabled(false);
 		
 		String[] tab2 = {"CL", "RB", "VA"};
 		this.jcbEtat = new JComboBox<String>(tab2);
@@ -74,10 +77,11 @@ public class VueModifierFicheFrais extends JPanel {
 		this.jcbEtat.setEnabled(false);
 		
 		this.jbValider = new JButton("Valider");
+		this.jbValider.setEnabled(false);
 		
-		this.jcbMois.addActionListener(new ActionModifierFicheFrais(gsb, vue, this, vueMsg, "Mois", this.jcbMois, this.jcbVisiteur));
-		this.jcbVisiteur.addActionListener(new ActionModifierFicheFrais(gsb, vue, this, vueMsg, "Visiteur", this.jcbMois, this.jcbVisiteur));
-		this.jbValider.addActionListener(new ActionModifierFicheFrais(gsb, vue, this, vueMsg, "Valider", this.jcbMois, this.jcbVisiteur));
+		this.jcbMois.addActionListener(new ActionModifierFicheFrais(gsb, this, vueMsg, "Mois", this.jcbMois, this.jcbVisiteur));
+		this.jcbVisiteur.addActionListener(new ActionModifierFicheFrais(gsb, this, vueMsg, "Visiteur", this.jcbMois, this.jcbVisiteur));
+		this.jbValider.addActionListener(new ActionModifierFicheFrais(gsb, this, vueMsg, "Valider", this.jcbMois, this.jcbVisiteur));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -125,28 +129,49 @@ public class VueModifierFicheFrais extends JPanel {
 		
 		ArrayList<FicheFrais> ficheFrais = ModeleBDD.getLesFicheFrais(Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString()), Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString()));
 		
+		this.jtfForfaisEtape.setEnabled(true);
 		this.jtfForfaisEtape.setText(lignesfrais.get(0));
+		this.jtfFraisKilométrique.setEnabled(true);
 		this.jtfFraisKilométrique.setText(lignesfrais.get(1));
+		this.jtfNuitéeHôtel.setEnabled(true);
 		this.jtfNuitéeHôtel.setText(lignesfrais.get(2));
+		this.jtfRepasRestaurant.setEnabled(true);
 		this.jtfRepasRestaurant.setText(lignesfrais.get(3));
 		this.jcbEtat.setEnabled(true);
 		this.jcbEtat.setSelectedItem(ficheFrais.get(0).getEtat());
+		this.jbValider.setEnabled(true);
 	}
 
-	public int getETP() {
-		return Integer.parseInt(this.jtfForfaisEtape.getText());
+	public Integer getETP() {
+		String str = this.jtfForfaisEtape.getText();
+		if(!str.matches("[0-9]*")) {
+			return null;
+		}
+		return Integer.parseInt(str);
 	}
 	
-	public int getKM() {
-		return Integer.parseInt(this.jtfFraisKilométrique.getText());
+	public Integer getKM() {
+		String str = this.jtfFraisKilométrique.getText();
+		if(!str.matches("[0-9]*")) {
+			return null;
+		}
+		return Integer.parseInt(str);
 	}
 	
-	public int getNUI() {
-		return Integer.parseInt(this.jtfNuitéeHôtel.getText());
+	public Integer getNUI() {
+		String str = this.jtfNuitéeHôtel.getText();
+		if(!str.matches("[0-9]*")) {
+			return null;
+		}
+		return Integer.parseInt(str);
 	}
 	
-	public int getREP() {
-		return Integer.parseInt(this.jtfRepasRestaurant.getText());
+	public Integer getREP() {
+		String str = this.jtfRepasRestaurant.getText();
+		if(!str.matches("[0-9]*")) {
+			return null;
+		}
+		return Integer.parseInt(str);
 	}
 	
 	public String getEtat() {

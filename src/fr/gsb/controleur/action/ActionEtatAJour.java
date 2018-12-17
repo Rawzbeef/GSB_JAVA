@@ -12,10 +12,10 @@ public class ActionEtatAJour implements ActionListener {
 	private JFrame f;
 	private VueMessage vueMsg;
 	private String etat;
-	private JComboBox jcbEtat;
+	private JComboBox<String> jcbEtat;
 	private int num;
 	
-	public ActionEtatAJour(JFrame f, VueMessage vueMsg, String etat, JComboBox listeEtat, String num) {
+	public ActionEtatAJour(JFrame f, VueMessage vueMsg, String etat, JComboBox<String> listeEtat, String num) {
 		this.f = f;
 		this.vueMsg = vueMsg;
 		this.etat = etat;
