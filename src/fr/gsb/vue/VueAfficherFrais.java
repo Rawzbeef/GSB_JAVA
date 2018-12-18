@@ -28,6 +28,13 @@ public class VueAfficherFrais extends JPanel {
 	
 	//label
 	private JLabel barre;
+	private JLabel JFraisforfait;
+	private JLabel JFicheFrais;
+	private JLabel JFicheHorsForfait;
+	
+	
+	//JButton
+	private JButton PDF;
 	
 	//JTable fraisforfait
 	private JScrollPane scrollFraisforfait;
@@ -46,25 +53,37 @@ public class VueAfficherFrais extends JPanel {
 	//JPanel
 	private JPanel JPNorth;
 	private JPanel JPCenter;
+	private JPanel JPCenterNorth;
 	private JPanel JPCenterSouth;
-
+	private JPanel JPSouth;
 	
 	//DefaultTableModel 
 	private DefaultTableModel modelFraisforfait;
 	private DefaultTableModel modelFicheFrais;
 	private DefaultTableModel modelFicheHorsForfait;
-	
+
 	
 	
 	public VueAfficherFrais(){
 		this.setLayout(new BorderLayout());
+		
+		//JPanel
 		JPNorth = new JPanel();
 		JPNorth.setLayout(new BoxLayout(JPNorth, BoxLayout.LINE_AXIS));
 		JPCenter = new JPanel();
+		JPCenterNorth= new JPanel();
 		JPCenterSouth = new JPanel();
+		JPSouth = new JPanel();
+		
+		//JButton 
+		PDF = new JButton("PDF");
+		
 		
 		//JLabel
 		barre = new JLabel (" / ");
+		JFraisforfait = new JLabel ("tableau Frais forfait : ");
+		JFicheFrais = new JLabel ("tableau fiche frais : ");
+		JFicheHorsForfait = new JLabel ("tableau fiche hors forfait : ");
 		//Partie Jpanel NORTH
 		//listAnnees 
 		ComboBoxlisteAnnees = new JComboBox<String>();
@@ -84,45 +103,61 @@ public class VueAfficherFrais extends JPanel {
 		
 		
 		//tableFraisforfait
-		modelFraisforfait =new DefaultTableModel();
-		tableFraisforfait= new JTable(modelFraisforfait);
-		modelFraisforfait.addColumn("Fraisforfait:");
+		modelFraisforfait = new DefaultTableModel();
+		tableFraisforfait = new JTable(modelFraisforfait);
 		modelFraisforfait.addColumn("libele");
 		modelFraisforfait.addColumn("montant");
 		scrollFraisforfait = new JScrollPane(tableFraisforfait);
+		scrollFraisforfait.setPreferredSize(new Dimension(500,90));//permet de changer la taille de la fenetre
 		
 		//tableFicheFrais
-		modelFicheFrais =new DefaultTableModel();
-		tableFicheFrais= new JTable(modelFicheFrais);
-		modelFicheFrais.addColumn("FicheFrais");
+		modelFicheFrais = new DefaultTableModel();
+		tableFicheFrais = new JTable(modelFicheFrais);
 		modelFicheFrais.addColumn("NbJustificatifs");
 		modelFicheFrais.addColumn("MontantValide");
 		modelFicheFrais.addColumn("DateModif");
 		modelFicheFrais.addColumn("Etat");
 		scrollFicheFrais = new JScrollPane(tableFicheFrais);
+		scrollFicheFrais.setPreferredSize(new Dimension(500,70));
 		
 		//tableFicheHorsForfait
-		modelFicheHorsForfait =new DefaultTableModel();
-		tableFicheHorsForfait= new JTable(modelFicheHorsForfait);
-		modelFicheHorsForfait.addColumn("FicheHorsForfait");
+		modelFicheHorsForfait = new DefaultTableModel();
+		tableFicheHorsForfait = new JTable(modelFicheHorsForfait);
 		modelFicheHorsForfait.addColumn("libelle");
 		modelFicheHorsForfait.addColumn("date");
 		modelFicheHorsForfait.addColumn("montant");
 		modelFicheHorsForfait.addColumn("etat");
 		scrollFicheHorsForfait = new JScrollPane(tableFicheHorsForfait);
-
-		//ajout dans leJPNorth
-
-		JPCenter.add(this.scrollFraisforfait);
-		JPCenterSouth.add(this.scrollFicheFrais);
-		JPCenterSouth.add(this.scrollFicheHorsForfait);
-		JPCenter.add(JPCenterSouth, BorderLayout.SOUTH);
+		scrollFicheHorsForfait.setPreferredSize(new Dimension(500,200));
 		
 		
+		
+		//ajout dans le JPNorth
 		JPNorth.add(this.ComboBoxlisteMois);
 		JPNorth.add(this.barre);
 		JPNorth.add(this.ComboBoxlisteAnnees);
 		JPNorth.add(this.ComboBoxListeVisiteur);
+		
+		
+		//ajout dans le JPCenter
+		JPCenter.add(JFraisforfait);
+		JPCenter.add(this.scrollFraisforfait);
+		
+		
+		//ajout dans le JPCenterNorth
+		JPCenterNorth.add(JFicheFrais);
+		JPCenterNorth.add(this.scrollFicheFrais);
+		
+		
+		//ajout dans le JPCenterSouth
+		JPCenterSouth.add(JFicheHorsForfait);
+		JPCenterSouth.add(this.scrollFicheHorsForfait);
+		
+		//ajout dans le JPCenter
+		JPCenter.add(JPCenterNorth, BorderLayout.NORTH);
+		JPCenter.add(JPCenterSouth, BorderLayout.SOUTH);
+		
+		JPSouth.add(PDF);
 		// ajout action listener
 		ComboBoxlisteMois.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Mois", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
 		ComboBoxlisteAnnees.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Annees", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
@@ -133,6 +168,7 @@ public class VueAfficherFrais extends JPanel {
 		
 		this.add(JPNorth, BorderLayout.NORTH);
 		this.add(JPCenter, BorderLayout.CENTER);
+		this.add(JPSouth, BorderLayout.SOUTH);
 	}
 }
 
