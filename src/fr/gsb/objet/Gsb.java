@@ -13,6 +13,8 @@ public class Gsb {
 	public Gsb() {
 		this.setLesVisiteurs(ModeleBDD.initLesVisiteurs());
 		
+		this.lesFichesFrais = ModeleBDD.initLesFichesFrais();
+		
 		ModeleBDD.initLienFicheFrais(lesVisiteurs);
 
 		this.setIdConnecté(null);
@@ -51,6 +53,20 @@ public class Gsb {
 			}
 		}
 		return liste;
+	}
+	
+	public FicheFrais getUneFicheFrais(String mois, String id) {
+		int i = 0;
+		FicheFrais fiche = null;
+		System.out.println("Fournis : " + mois + " " + id );
+		while(i < this.lesFichesFrais.size() && this.lesFichesFrais.get(i).getMois() != mois && this.lesFichesFrais.get(i).getId() != id) {
+			i++;
+			System.out.println(i + " - " + this.lesFichesFrais.get(i).getMois() + " " + this.lesFichesFrais.get(i).getId());
+		}
+		if(i < this.lesFichesFrais.size() && this.lesFichesFrais.get(i).getMois() == mois && this.lesFichesFrais.get(i).getId() == id) {
+			fiche = this.lesFichesFrais.get(i);
+		}
+		return fiche;
 	}
 
 	public String getIdConnecté() {
