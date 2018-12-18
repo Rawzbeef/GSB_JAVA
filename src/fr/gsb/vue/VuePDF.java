@@ -3,11 +3,12 @@ import java.io.File;
 import java.io.IOException; 
 
 import org.apache.pdfbox.pdmodel.*;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class VuePDF {
 
-	public static void main (String args[]) throws IOException {
+	public VuePDF() throws InvalidPasswordException, IOException {
 		File file = new File("P:/pdfTest/test.pdf"); 
 		PDDocument document = PDDocument.load(file); 
 		PDPage page = document.getPage(0);
