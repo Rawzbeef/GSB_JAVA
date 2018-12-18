@@ -10,6 +10,7 @@ import javax.swing.*;
 public class VueAccueil extends JPanel {
 	
 	private JLabel jlTitre;
+	private JLabel jlLogo;
 	
 	public VueAccueil() {
 		
@@ -19,6 +20,12 @@ public class VueAccueil extends JPanel {
 		this.jlTitre = new JLabel("Remboursement des frais");
 		this.jlTitre.setFont(new Font("Calibri", Font.BOLD, 20));
 		
+		this.jlLogo = new JLabel(new ImageIcon("img/logo.jpg"));
+		
+		c.gridx = 0;
+		c.gridy = 0;
 		this.add(jlTitre, c);
+		c.gridy++;
+		this.add(jlLogo, c);
 	}
 }

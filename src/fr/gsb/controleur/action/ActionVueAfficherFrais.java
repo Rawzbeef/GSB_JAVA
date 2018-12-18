@@ -77,7 +77,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 		case "Mois":
 			String[] tabAnnees = {"2018", "2017", "2016", "2015","2014","2013","2012","2011","2010","2009","2008","2007"};
 			ComboBoxAnnees.removeAllItems();
-			for(int i=0;i<12;i++){
+			for(int i = 0;i<12;i++){
 				ComboBoxAnnees.addItem(tabAnnees[i]);	
 			}
 			mois=(String)ComboBoxMois.getSelectedItem();
@@ -93,13 +93,13 @@ public class ActionVueAfficherFrais implements ActionListener{
 			anneesMois=annees+mois;
 
 			//creation de la list VisiteurMois et ajoute de variable
-			visiteurMois=new ArrayList<>();
-			visiteurMois=ModeleBDD.getVisiteursMoisVue(anneesMois);
+			visiteurMois = new ArrayList<>();
+			visiteurMois = ModeleBDD.getVisiteursMoisVue(anneesMois);
 
 			//mise a 0 de la listeVisiteur puis ajout du nom et prénom du visiteur
 			ComboBoxVisiteur.removeAllItems();
-			for(int i=0;i<visiteurMois.size();i++){
-				idVisiteur=visiteurMois.get(i).getId();
+			for(int i = 0;i<visiteurMois.size();i++){
+				idVisiteur = visiteurMois.get(i).getId();
 				ComboBoxVisiteur.addItem(idVisiteur);
 			}
 			ComboBoxVisiteur.setEnabled(true);
@@ -117,15 +117,13 @@ public class ActionVueAfficherFrais implements ActionListener{
 			//Fraisforfait
 			LesLigneFraisforfait=ModeleBDD.getLesLignefraisforfait((String)ComboBoxVisiteur.getSelectedItem(),anneesMois);
 			unNewModelFraisforfait = new DefaultTableModel();
-			unNewModelFraisforfait.addColumn("Fraisforfait:");
 			unNewModelFraisforfait.addColumn("libelle");
 			unNewModelFraisforfait.addColumn("Quantite");
-			donneesFraisforfait = new Object[3];
+			donneesFraisforfait = new Object[2];
 			
 			for (Lignefraisforfait unFraisForfait : LesLigneFraisforfait) {
-				donneesFraisforfait[0]= donneesFraisforfait[0] = "";
-				donneesFraisforfait[1] = unFraisForfait.getLibelleFraiForfait().getLibelle();
-				donneesFraisforfait[2] = unFraisForfait.getQuantite();
+				donneesFraisforfait[0] = unFraisForfait.getLibelleFraiForfait().getLibelle();
+				donneesFraisforfait[1] = unFraisForfait.getQuantite();
 				unNewModelFraisforfait.addRow(donneesFraisforfait);
 			}
 			tableFraisforfait.setModel(unNewModelFraisforfait);
@@ -133,40 +131,36 @@ public class ActionVueAfficherFrais implements ActionListener{
 			//ficheFrais
 			lesFicheFrais=ModeleBDD.getLesFicheFrais((String)ComboBoxVisiteur.getSelectedItem(),anneesMois);
 			unNewModelFicheFrais = new DefaultTableModel();
-			unNewModelFicheFrais.addColumn("FicheFrais");
 			unNewModelFicheFrais.addColumn("NbJustificatifs");
 			unNewModelFicheFrais.addColumn("MontantValide");
 			unNewModelFicheFrais.addColumn("DateModif");
 			unNewModelFicheFrais.addColumn("Etat");
-			donneesFicheFrais = new Object[5];
+			donneesFicheFrais = new Object[4];
 			
 			for (FicheFrais unFicheFrais : lesFicheFrais) {
-				donneesFicheFrais[0] =  "";
-				donneesFicheFrais[1] = unFicheFrais.getNbJustificatifs();
-				donneesFicheFrais[2] = unFicheFrais.getDateModif();
-				donneesFicheFrais[3] = unFicheFrais.getMontantValide();
-				donneesFicheFrais[4] = unFicheFrais.getEtat();
+				donneesFicheFrais[0] = unFicheFrais.getNbJustificatifs();
+				donneesFicheFrais[1] = unFicheFrais.getDateModif();
+				donneesFicheFrais[2] = unFicheFrais.getMontantValide();
+				donneesFicheFrais[3] = unFicheFrais.getEtat();
 				unNewModelFicheFrais.addRow(donneesFicheFrais);
 			}
 			tableFicheFrais.setModel(unNewModelFicheFrais);
 
 
 			//ficheFraisHorsForfait
-			lesFicheFraisHorsForfait=ModeleBDD.getLesFraisHorsForfaits(anneesMois,(String)ComboBoxVisiteur.getSelectedItem());
-			unNewModelficheHorsForfait=new DefaultTableModel();
-			unNewModelficheHorsForfait.addColumn("ficheHorsForfait");
+			lesFicheFraisHorsForfait = ModeleBDD.getLesFraisHorsForfaits(anneesMois,(String)ComboBoxVisiteur.getSelectedItem());
+			unNewModelficheHorsForfait = new DefaultTableModel();
 			unNewModelficheHorsForfait.addColumn("libelle");
 			unNewModelficheHorsForfait.addColumn("date");
 			unNewModelficheHorsForfait.addColumn("montant");
 			unNewModelficheHorsForfait.addColumn("etat");
-			donneesFicheFraisHorsForfait= new Object[5];
+			donneesFicheFraisHorsForfait= new Object[4];
 			
 			for (FraisHorsForfait unFraisHorsForfait : lesFicheFraisHorsForfait) {
-				donneesFicheFraisHorsForfait[0] =  "";
-				donneesFicheFraisHorsForfait[1] = unFraisHorsForfait.getLibelle();
-				donneesFicheFraisHorsForfait[2] = unFraisHorsForfait.getDate();
-				donneesFicheFraisHorsForfait[3] = unFraisHorsForfait.getMontant();
-				donneesFicheFraisHorsForfait[4] = unFraisHorsForfait.getEtat();
+				donneesFicheFraisHorsForfait[0] = unFraisHorsForfait.getLibelle();
+				donneesFicheFraisHorsForfait[1] = unFraisHorsForfait.getDate();
+				donneesFicheFraisHorsForfait[2] = unFraisHorsForfait.getMontant();
+				donneesFicheFraisHorsForfait[3] = unFraisHorsForfait.getEtat();
 				unNewModelficheHorsForfait.addRow(donneesFicheFraisHorsForfait);
 			}
 			tableFicheFraisHorsForfait.setModel(unNewModelficheHorsForfait);

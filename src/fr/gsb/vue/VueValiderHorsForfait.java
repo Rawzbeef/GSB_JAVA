@@ -16,7 +16,6 @@ public class VueValiderHorsForfait extends JPanel {
 	private JScrollPane scroll;
 	private JPanel panel;
 	private JPanel panelGrid;
-	private JLabel jlNbFrais;
 	private JButton jbModifier;
 
 	
@@ -55,12 +54,10 @@ public class VueValiderHorsForfait extends JPanel {
 		panel = new JPanel();
 		panelGrid = new JPanel();
 		panelGrid.setLayout(new GridLayout(2,1));
-		jlNbFrais = new JLabel("Nombre total de frais hors forfait : " + /*lesFrais.size()*/0, JLabel.CENTER);
-		jlNbFrais.setPreferredSize(taille);
-		panel.add(jlNbFrais);
 		
 		// Bouton pour modifier la situation des fiches hors forfait
 		this.jbModifier = new JButton("Modifer la situation");
+		this.jbModifier.setPreferredSize(taille);
 		panel.add(jbModifier);
 		
 		panelGrid.add(panel);
