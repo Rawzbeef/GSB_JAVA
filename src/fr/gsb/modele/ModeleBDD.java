@@ -52,12 +52,14 @@ public class ModeleBDD {
 	 */
 	public static boolean connexionComptable(String login, String mdp) {
 		boolean trouver = false;
+		String newMdp;
 		connexionBDD();
 		try {
+			newMdp = Modele.cryptageMd5(mdp);
 			String req = "SELECT COUNT('login') FROM gsb_Employe WHERE statut = 'Comptable' AND login = ? AND Mdp = ?";
 			pst = connexion.prepareStatement(req);
 			pst.setString(1, login);
-			pst.setString(2, mdp);
+			pst.setString(2, newMdp);
 			rs = pst.executeQuery();
 			rs.next();
 			if (rs.getInt(1) == 1) {
