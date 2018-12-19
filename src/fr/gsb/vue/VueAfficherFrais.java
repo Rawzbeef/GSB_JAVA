@@ -79,6 +79,7 @@ public class VueAfficherFrais extends JPanel {
 		
 		//JButton 
 		PDF = new JButton("PDF");
+		this.PDF.setEnabled(false);
 		
 		//JLabel
 		barre = new JLabel (" / ");
@@ -160,10 +161,10 @@ public class VueAfficherFrais extends JPanel {
 		
 		JPSouth.add(PDF);
 		// ajout action listener
-		ComboBoxlisteMois.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Mois", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
-		ComboBoxlisteAnnees.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Annees", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
-		ComboBoxListeVisiteur.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Visiteur", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
-		this.PDF.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "PDF", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
+		ComboBoxlisteMois.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Mois", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait, PDF));
+		ComboBoxlisteAnnees.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Annees", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait, PDF));
+		ComboBoxListeVisiteur.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Visiteur", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait, PDF));
+		this.PDF.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "PDF", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait, PDF));
 		
 		//ajout dans le PanelPrinciapl
 		

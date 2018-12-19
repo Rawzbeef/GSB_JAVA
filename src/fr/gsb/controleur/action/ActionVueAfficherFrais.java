@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 
+
 import fr.gsb.modele.Modele;
 //import gsb
 import fr.gsb.modele.ModeleBDD;
@@ -26,6 +27,9 @@ import fr.gsb.vue.VuePDF;
 
 public class ActionVueAfficherFrais implements ActionListener{
 
+	//Jbutton
+	private JButton pdf;
+	
 	//Jtable pour la Fraisforfait
 	private JTable  tableFraisforfait;
 	private Object [] donneesFraisforfait;
@@ -61,7 +65,8 @@ public class ActionVueAfficherFrais implements ActionListener{
 	private String anneesMois;
 	private String idVisiteur;
 
-	public ActionVueAfficherFrais(JComboBox<String> uneComboBoxMois ,JComboBox<String> uneComboBoxAnnees ,JComboBox<String> uneComboBoxVisiteur,String unMot, JTable uneTableFraisforfait, JTable uneTableFicheFrais, JTable uneTableFicheFraisHorsForfait) {
+	public ActionVueAfficherFrais(JComboBox<String> uneComboBoxMois ,JComboBox<String> uneComboBoxAnnees ,JComboBox<String> uneComboBoxVisiteur,String unMot, JTable uneTableFraisforfait, JTable uneTableFicheFrais, JTable uneTableFicheFraisHorsForfait, JButton PDF) {
+		this.pdf = PDF;
 		this.ComboBoxMois=uneComboBoxMois;
 		this.ComboBoxAnnees=uneComboBoxAnnees;
 		this.ComboBoxVisiteur=uneComboBoxVisiteur;
@@ -87,7 +92,6 @@ public class ActionVueAfficherFrais implements ActionListener{
 			mois=(String)ComboBoxMois.getSelectedItem();
 			ComboBoxAnnees.setEnabled(true);
 			ComboBoxAnnees.revalidate();
-
 			break;
 
 			//cas ou le mot envoier a l'action est annees
@@ -168,6 +172,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 				unNewModelficheHorsForfait.addRow(donneesFicheFraisHorsForfait);
 			}
 			tableFicheFraisHorsForfait.setModel(unNewModelficheHorsForfait);
+			this.pdf.setEnabled(true);
 			break;
 		case "PDF":
 			//Génération du PDF
