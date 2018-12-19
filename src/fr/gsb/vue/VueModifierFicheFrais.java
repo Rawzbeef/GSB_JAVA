@@ -2,6 +2,7 @@ package fr.gsb.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -88,6 +89,11 @@ public class VueModifierFicheFrais extends JPanel {
 		c.insets = new Insets(5, 5, 5, 5);
 		c.gridx = 0;
 		c.gridy = 0;
+		c.gridwidth = 5;
+		panel.add(new JLabel("Élements forfaitisé", JLabel.CENTER), c);
+		c.gridx = 0;
+		c.gridy++;
+		c.gridwidth = 1;
 		panel.add(this.jlMois, c);
 		c.gridx++;
 		panel.add(this.jcbMois, c);
@@ -99,6 +105,17 @@ public class VueModifierFicheFrais extends JPanel {
 		c.gridx = 0;
 		c.gridy++;
 		c.gridwidth = 1;
+		panel.add(new JLabel("Forfait Etape", JLabel.CENTER), c);
+		c.gridx++;
+		panel.add(new JLabel("Frais Kilométrique", JLabel.CENTER), c);
+		c.gridx++;
+		panel.add(new JLabel("Nuitée Hôtel", JLabel.CENTER), c);
+		c.gridx++;
+		panel.add(new JLabel("Repas Restaurant", JLabel.CENTER), c);
+		c.gridx++;
+		panel.add(new JLabel("Etat", JLabel.CENTER), c);
+		c.gridx = 0;
+		c.gridy++;
 		panel.add(this.jtfForfaisEtape, c);
 		c.gridx++;
 		panel.add(this.jtfFraisKilométrique, c);
@@ -111,7 +128,7 @@ public class VueModifierFicheFrais extends JPanel {
 		c.gridx = 0;
 		c.gridy++;
 		c.gridwidth = 5;
-		panel.add(this.jbValider);
+		panel.add(this.jbValider, c);
 		
 		this.vueValiderHorsForfait = new VueValiderHorsForfait(vue, this, vueMsg);
 		this.add(panel, BorderLayout.NORTH);

@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 
+
+import fr.gsb.modele.Modele;
 //import gsb
 import fr.gsb.modele.ModeleBDD;
 import fr.gsb.objet.FicheFrais;
@@ -173,6 +175,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 			String annees=(String)ComboBoxAnnees.getSelectedItem();
 			String anneesMois=annees+mois;
 			String id = ComboBoxVisiteur.getSelectedItem().toString();
+			
 			new VuePDF(anneesMois, id, ModeleBDD.getLesFraisHorsForfaits(anneesMois, id), ModeleBDD.getLigneFrais(id, anneesMois));
 			break;
 		}

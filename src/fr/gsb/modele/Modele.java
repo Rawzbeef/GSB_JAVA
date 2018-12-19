@@ -143,6 +143,7 @@ public class Modele {
 		for (FraisHorsForfait unMontantHF : tabHorsForfait) {
 			total = total + unMontantHF.getMontant();
 		}
+
 		return total;
 	}
 }

@@ -57,9 +57,7 @@ public class VuePDF {
 			//Etat de la fiche
 			g2d.drawString("Etat de la fiche", 30, 90);
 			g2d.drawString(":", 120, 90);
-			System.out.println(mois + " " + id);
 			if(Modele.getGsb().getUneFicheFrais(mois, id)!=null)
-			System.out.println(Modele.getGsb().getUneFicheFrais(mois, id).getEtat());
 			switch(Modele.getGsb().getUneFicheFrais(mois, id).getEtat()){
 				case "RB":
 					g2d.drawString("Remboursée", 130, 90);
@@ -78,7 +76,7 @@ public class VuePDF {
 			//Montant validé
 			g2d.drawString("Montant validé", 30, 105);
 			g2d.drawString(":", 120, 105);
-			g2d.drawString(99+"€", 130, 105);
+			g2d.drawString(Modele.getGsb().getUneFicheFrais(mois, id).getMontantValide() + "€", 130, 105);
 			
 			//Nombre de justificatifs
 			g2d.drawString("Nb de justificatifs", 30, 120);
