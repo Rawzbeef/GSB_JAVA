@@ -52,12 +52,14 @@ public class ModeleBDD {
 	 */
 	public static boolean connexionComptable(String login, String mdp) {
 		boolean trouver = false;
+		String newMdp;
 		connexionBDD();
 		try {
+			newMdp = Modele.cryptageMd5(mdp);
 			String req = "SELECT COUNT('login') FROM gsb_Employe WHERE statut = 'Comptable' AND login = ? AND Mdp = ?";
 			pst = connexion.prepareStatement(req);
 			pst.setString(1, login);
-			pst.setString(2, mdp);
+			pst.setString(2, newMdp);
 			rs = pst.executeQuery();
 			rs.next();
 			if (rs.getInt(1) == 1) {
@@ -98,6 +100,28 @@ public class ModeleBDD {
 
 		deconnexionBDD();
 		return lesVisiteurs;
+	}
+	
+	public static ArrayList<FicheFrais> initLesFichesFrais() {
+		connexionBDD();
+		ArrayList<FicheFrais> lesFicheFrais = new ArrayList<FicheFrais>();
+		try {
+			String req = "SELECT * FROM gsb_FicheFrais";
+			st = connexion.createStatement();
+			rs = st.executeQuery(req);
+			FicheFrais unFicheFrais;
+			while(rs.next()){
+				unFicheFrais = new FicheFrais(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6));
+				lesFicheFrais.add(unFicheFrais);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return lesFicheFrais;
 	}
 
 	/**
@@ -253,7 +277,7 @@ public class ModeleBDD {
 			}
 
 			rs.close();
-			st.close();
+			pst.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

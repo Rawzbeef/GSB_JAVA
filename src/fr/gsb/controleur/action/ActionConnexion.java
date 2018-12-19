@@ -29,7 +29,7 @@ public class ActionConnexion implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		vueMsg.reset();
-		String mdp = Modele.cryptageMd5(jtfMdp.getText());
+		String mdp = jtfMdp.getText();
 		if(ModeleBDD.connexionComptable(jtfIdentifiant.getText(), mdp)) {
 			vue.getContentPane().removeAll();
 			vue.setJMenuBar(new VueMenu(gsb, vue, vueMsg));
