@@ -116,7 +116,7 @@ public class VueAfficherFrais extends JPanel {
 		modelFicheFrais.addColumn("NbJustificatifs");
 		modelFicheFrais.addColumn("MontantValide");
 		modelFicheFrais.addColumn("DateModif");
-		modelFicheFrais.addColumn("Etat");
+		modelFicheFrais.addColumn("etat");
 		scrollFicheFrais = new JScrollPane(tableFicheFrais);
 		scrollFicheFrais.setPreferredSize(new Dimension(500,70));
 		
