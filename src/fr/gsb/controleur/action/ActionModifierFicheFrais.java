@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import fr.gsb.modele.Modele;
 import fr.gsb.modele.ModeleBDD;
 import fr.gsb.objet.FraisHorsForfait;
 import fr.gsb.objet.Gsb;
+import fr.gsb.objet.Lignefraisforfait;
 import fr.gsb.objet.Visiteur;
 import fr.gsb.vue.VueMessage;
 import fr.gsb.vue.VueModifierFicheFrais;
@@ -84,9 +86,20 @@ public class ActionModifierFicheFrais implements ActionListener {
 			break;
 		case "Valider":
 			if(this.vueModifierFicheFrais.getETP() != null && this.vueModifierFicheFrais.getKM() != null && this.vueModifierFicheFrais.getNUI() != null && this.vueModifierFicheFrais.getREP() != null) {
-			String id = Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString());
-			String mois = Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString());
-			ModeleBDD.updateLaFicheFrais(id, mois, this.vueModifierFicheFrais.getETP(), this.vueModifierFicheFrais.getKM(), this.vueModifierFicheFrais.getNUI(), this.vueModifierFicheFrais.getREP(), this.vueModifierFicheFrais.getEtat());
+				String id = Modele.concatPremierMot(this.jcbVisiteur.getSelectedItem().toString());
+				String mois = Modele.dateFrancaisVersNormal(this.jcbMois.getSelectedItem().toString());
+				String etat = this.vueModifierFicheFrais.getEtat();
+				ModeleBDD.updateLaFicheFrais(id, mois, this.vueModifierFicheFrais.getETP(), this.vueModifierFicheFrais.getKM(), this.vueModifierFicheFrais.getNUI(), this.vueModifierFicheFrais.getREP(), etat);
+				
+				// Update du montant validé
+				if (!etat.equals("CL")) {
+					ArrayList<Lignefraisforfait> lesLignesFF = ModeleBDD.getLesLignefraisforfait(id, mois);
+					ArrayList<Double> lesMontants = ModeleBDD.getLesMontantsFraisForfait();
+					ArrayList<FraisHorsForfait> lesFraisHF = ModeleBDD.getLesFraisHorsForfaitValides(id, mois);
+					double montant = Modele.calculMontantValide(lesLignesFF, lesMontants, lesFraisHF);
+					ModeleBDD.updateMontantValide(id, mois, montant);
+				}
+				
 			}
 			else {
 				this.vueMsg.addLabelErreur("Un champ est incorrect");

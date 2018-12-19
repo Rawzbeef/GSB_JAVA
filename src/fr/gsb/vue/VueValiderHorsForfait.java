@@ -20,7 +20,7 @@ public class VueValiderHorsForfait extends JPanel {
 
 	
 	// Constructeur de la vue
-	public VueValiderHorsForfait(Vue vue, VueMessage vueMsg) {
+	public VueValiderHorsForfait(Vue vue, VueModifierFicheFrais vueM, VueMessage vueMsg) {
 		
 		this.jlTitre = new JLabel("Descriptif des éléments hors forfait");
 		this.add(jlTitre);
@@ -65,7 +65,7 @@ public class VueValiderHorsForfait extends JPanel {
 		
 		this.add(panelGrid);
 		
-		this.jbModifier.addActionListener(new ActionModifierEtatHF(vue, vueMsg, this.tableau));
+		this.jbModifier.addActionListener(new ActionModifierEtatHF(vue, vueM, vueMsg, this.tableau));
 		
 		
 	}

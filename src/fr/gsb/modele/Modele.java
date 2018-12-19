@@ -3,7 +3,9 @@ package fr.gsb.modele;
 import java.security.*;
 import java.util.ArrayList;
 
+import fr.gsb.objet.FraisHorsForfait;
 import fr.gsb.objet.Gsb;
+import fr.gsb.objet.Lignefraisforfait;
 
 public class Modele {
 	
@@ -121,6 +123,27 @@ public class Modele {
 		annee = laDate.substring(3, 7);
 		date = annee + mois;
 		return date;
+	}
+	
+	/**
+	 * Calcul le montant valide de la fiche de frais
+	 * 
+	 * @param tabQuantite
+	 * @param tabMontant
+	 * @param tabHorsForfait
+	 * @return
+	 */
+	public static double calculMontantValide(ArrayList<Lignefraisforfait> tabQuantite, ArrayList<Double> tabMontant, ArrayList<FraisHorsForfait> tabHorsForfait) {
+		double total = 0;
+		double montant = 0;
+		for (int i = 0; i < tabMontant.size(); i++) {
+			montant = tabMontant.get(i) * tabQuantite.get(i).getQuantite();
+			total = total + montant;
+		}
+		for (FraisHorsForfait unMontantHF : tabHorsForfait) {
+			total = total + unMontantHF.getMontant();
+		}
+		return total;
 	}
 }
 

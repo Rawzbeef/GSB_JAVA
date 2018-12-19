@@ -113,7 +113,7 @@ public class VueModifierFicheFrais extends JPanel {
 		c.gridwidth = 5;
 		panel.add(this.jbValider);
 		
-		this.vueValiderHorsForfait = new VueValiderHorsForfait(vue, vueMsg);
+		this.vueValiderHorsForfait = new VueValiderHorsForfait(vue, this, vueMsg);
 		this.add(panel, BorderLayout.NORTH);
 		this.add(this.vueValiderHorsForfait, BorderLayout.CENTER);
 		
