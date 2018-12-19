@@ -11,12 +11,14 @@ import javax.swing.table.DefaultTableModel;
 
 
 
+
 //import gsb
 import fr.gsb.modele.ModeleBDD;
 import fr.gsb.objet.FicheFrais;
 import fr.gsb.objet.FraisHorsForfait;
 import fr.gsb.objet.Lignefraisforfait;
 import fr.gsb.objet.Visiteur;
+import fr.gsb.vue.VuePDF;
 
 
 
@@ -164,6 +166,14 @@ public class ActionVueAfficherFrais implements ActionListener{
 				unNewModelficheHorsForfait.addRow(donneesFicheFraisHorsForfait);
 			}
 			tableFicheFraisHorsForfait.setModel(unNewModelficheHorsForfait);
+			break;
+		case "PDF":
+			//Génération du PDF
+			String mois=(String)ComboBoxMois.getSelectedItem();
+			String annees=(String)ComboBoxAnnees.getSelectedItem();
+			String anneesMois=annees+mois;
+			String id = ComboBoxVisiteur.getSelectedItem().toString();
+			new VuePDF(anneesMois, id, ModeleBDD.getLesFraisHorsForfaits(anneesMois, id), ModeleBDD.getLigneFrais(id, anneesMois));
 			break;
 		}
 	}

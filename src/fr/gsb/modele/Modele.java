@@ -71,10 +71,10 @@ public class Modele {
 	 * @param laDate
 	 * @return date
 	 */
-	public static String dateVersFrancais(String aaamm) {
+	public static String dateVersFrancais(String aaaamm) {
 		String date, mois, annee;
-		annee = aaamm.substring(0, 4);
-		mois = aaamm.substring(4, 6);
+		annee = aaaamm.substring(0, 4);
+		mois = aaaamm.substring(4, 6);
 		date = mois + "/" + annee;
 		return date;
 	}

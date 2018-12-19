@@ -58,12 +58,12 @@ public class Gsb {
 	public FicheFrais getUneFicheFrais(String mois, String id) {
 		int i = 0;
 		FicheFrais fiche = null;
-		System.out.println("Fournis : " + mois + " " + id );
-		while(i < this.lesFichesFrais.size() && this.lesFichesFrais.get(i).getMois() != mois && this.lesFichesFrais.get(i).getId() != id) {
+		System.out.println("mm "+mois+" "+id+" "+ this.lesFichesFrais.size());
+		while(i < this.lesFichesFrais.size() && !this.lesFichesFrais.get(i).getMois().equals(mois) || !this.lesFichesFrais.get(i).getId().equals(id)) {
+			System.out.println(this.lesFichesFrais.get(i).getMois() + " - " + this.lesFichesFrais.get(i).getId());
 			i++;
-			System.out.println(i + " - " + this.lesFichesFrais.get(i).getMois() + " " + this.lesFichesFrais.get(i).getId());
 		}
-		if(i < this.lesFichesFrais.size() && this.lesFichesFrais.get(i).getMois() == mois && this.lesFichesFrais.get(i).getId() == id) {
+		if(i < this.lesFichesFrais.size() && this.lesFichesFrais.get(i).getMois().equals(mois) && this.lesFichesFrais.get(i).getId().equals(id)) {
 			fiche = this.lesFichesFrais.get(i);
 		}
 		return fiche;

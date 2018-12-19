@@ -23,7 +23,7 @@ import fr.gsb.objet.FraisHorsForfait;
 public class VuePDF {
 
 
-	public VuePDF(String mois, String id, ArrayList<FraisHorsForfait> fraisHorsForfait, ArrayList<FicheFrais> ficheFrais, ArrayList<String> ligneFrais) {
+	public VuePDF(String mois, String id, ArrayList<FraisHorsForfait> fraisHorsForfait, ArrayList<String> ligneFrais) {
 		
 		
 		
@@ -47,7 +47,7 @@ public class VuePDF {
 			g2d.setFont(new Font("Arial", Font.PLAIN, 11));
 			g2d.drawString("Fiche de frais du", 30, 60);
 			g2d.drawString(":", 120, 60);
-			g2d.drawString("mois", 130, 60);
+			g2d.drawString(Modele.dateVersFrancais(mois), 130, 60);
 
 			//Nom du visiteur
 			g2d.drawString("Nom du visiteur", 30, 75);
@@ -57,6 +57,8 @@ public class VuePDF {
 			//Etat de la fiche
 			g2d.drawString("Etat de la fiche", 30, 90);
 			g2d.drawString(":", 120, 90);
+			System.out.println(mois + " " + id);
+			if(Modele.getGsb().getUneFicheFrais(mois, id)!=null)
 			System.out.println(Modele.getGsb().getUneFicheFrais(mois, id).getEtat());
 			switch(Modele.getGsb().getUneFicheFrais(mois, id).getEtat()){
 				case "RB":
@@ -76,12 +78,12 @@ public class VuePDF {
 			//Montant validé
 			g2d.drawString("Montant validé", 30, 105);
 			g2d.drawString(":", 120, 105);
-			g2d.drawString(100+"€", 130, 105);
+			g2d.drawString(99+"€", 130, 105);
 			
 			//Nombre de justificatifs
 			g2d.drawString("Nb de justificatifs", 30, 120);
 			g2d.drawString(":", 120, 120);
-			g2d.drawString(""+99, 130, 120);
+			g2d.drawString("" + Modele.getGsb().getUneFicheFrais(mois, id).getNbJustificatifs(), 130, 120);
 			
 			//Ligne
 			g2d.drawLine(30, 135, 585, 135);
@@ -93,19 +95,25 @@ public class VuePDF {
 			int y = 175;
 			
 			//Affichage des frais forfait
-			/*for (String ligneFraisForfait : ligneFrais) {
-				y += 15;
-				switch (ligneFraisForfait){
-					case "ETP":
-						break;
-					case "KM":
-						break;
-					//...
-				}
-				g2d.drawString(ligneFraisForfait.getLibelle(), 50, y);
-				g2d.drawString(" : ", 130, y);
-				g2d.drawString(""+ligneFraisForfait.getValeur(), 140, y);
-			}*/
+			y += 15;
+			g2d.drawString("Forfait Etape", 50, y);
+			g2d.drawString(" : ", 130, y);
+			g2d.drawString(""+ligneFrais.get(0), 160, y);
+			
+			y += 15;
+			g2d.drawString("Frais Kilométrique", 50, y);
+			g2d.drawString(" : ", 130, y);
+			g2d.drawString(""+ligneFrais.get(1), 160, y);
+			
+			y += 15;
+			g2d.drawString("Nuitée Hôtel", 50, y);
+			g2d.drawString(" : ", 130, y);
+			g2d.drawString(""+ligneFrais.get(2), 160, y);
+			
+			y += 15;
+			g2d.drawString("Repas Restaurant", 50, y);
+			g2d.drawString(" : ", 130, y);
+			g2d.drawString(""+ligneFrais.get(3), 160, y);
 			
 			y += 15;
 			
@@ -123,9 +131,8 @@ public class VuePDF {
 			for (FraisHorsForfait ligneFraisHorsForfait : fraisHorsForfait) {
 				y += 15;
 				g2d.drawString("Date : " + ligneFraisHorsForfait.getDate(), 50, y);
-				g2d.drawString("Libellé : " + ligneFraisHorsForfait.getLibelle(), 170, y);
-				g2d.drawString("Montant : " + ligneFraisHorsForfait.getMontant()+"€", 300, y);
-				//g2d.drawString("Justification : " + ligneFraisHorsForfait., 350, y);
+				g2d.drawString("Libellé : " + ligneFraisHorsForfait.getLibelle(), 250, y);
+				g2d.drawString("Montant : " + ligneFraisHorsForfait.getMontant()+"€", 450, y);
 			}
 			
 			y += 15;		

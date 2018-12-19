@@ -5,6 +5,8 @@ package fr.gsb.vue;
 import fr.gsb.controleur.action.ActionVueAfficherFrais;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -77,7 +79,6 @@ public class VueAfficherFrais extends JPanel {
 		
 		//JButton 
 		PDF = new JButton("PDF");
-		
 		
 		//JLabel
 		barre = new JLabel (" / ");
@@ -162,7 +163,7 @@ public class VueAfficherFrais extends JPanel {
 		ComboBoxlisteMois.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Mois", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
 		ComboBoxlisteAnnees.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Annees", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
 		ComboBoxListeVisiteur.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "Visiteur", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
-		
+		this.PDF.addActionListener(new ActionVueAfficherFrais(ComboBoxlisteMois, ComboBoxlisteAnnees, ComboBoxListeVisiteur, "PDF", tableFraisforfait, tableFicheFrais, tableFicheHorsForfait));
 		
 		//ajout dans le PanelPrinciapl
 		
