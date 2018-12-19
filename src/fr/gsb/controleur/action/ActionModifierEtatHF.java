@@ -9,11 +9,13 @@ import fr.gsb.vue.*;
 public class ActionModifierEtatHF implements ActionListener {
 	
 	private Vue vue;
+	private VueModifierFicheFrais vueM;
 	private VueMessage vueMsg;
 	private JTable tableau;
 	
-	public ActionModifierEtatHF(Vue vue, VueMessage vueMsg, JTable tableauFrais) {
+	public ActionModifierEtatHF(Vue vue, VueModifierFicheFrais vueM, VueMessage vueMsg, JTable tableauFrais) {
 		this.vue = vue;
+		this.vueM = vueM;
 		this.vueMsg = vueMsg;
 		this.tableau = tableauFrais;
 	}
@@ -22,6 +24,8 @@ public class ActionModifierEtatHF implements ActionListener {
 		int selection = this.tableau.getSelectedRow();
 		// Vérification si une ligne est sélectionnée
 		if (selection == -1) {
+			vue.getContentPane().removeAll();
+			vue.getContentPane().add(vueM).revalidate();
 			vueMsg.addLabelErreur("Aucune ligne sélectionnée.");
 			vue.getContentPane().revalidate();
 		}

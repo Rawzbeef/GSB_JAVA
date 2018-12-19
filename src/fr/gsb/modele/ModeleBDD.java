@@ -341,7 +341,18 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return liste2;
 	}
-
+	
+	/**
+	 * Met à jour les quantités d'une ligne frais forfait à un mois donné
+	 * 
+	 * @param id
+	 * @param mois
+	 * @param etp
+	 * @param km
+	 * @param nui
+	 * @param rep
+	 * @param etat
+	 */
 	public static void updateLaFicheFrais(String id, String mois, int etp, int km, int nui, int rep, String etat) {
 		connexionBDD();
 		try {
@@ -393,6 +404,86 @@ public class ModeleBDD {
 			e.printStackTrace();
 		}
 		deconnexionBDD();
+	}
+	
+	/**
+	 * Met à jour le montant validé de la fiche de frais
+	 * 
+	 * @param id
+	 * @param mois
+	 * @param montant
+	 */
+	public static void updateMontantValide(String id, String mois, double montant) {
+		connexionBDD();
+		try {
+			String req = "UPDATE gsb_fichefrais SET montantValide = ? WHERE idVisiteur = ? AND mois = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setDouble(1, montant);
+			pst.setString(2, id);
+			pst.setString(3, mois);
+
+			pst.executeUpdate();
+			pst.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		deconnexionBDD();
+	}
+	
+	/**
+	 * Récupère et retourne une liste des frais hors forfait validés par le comptable
+	 * 
+	 * @return lesFrais
+	 */
+	public static ArrayList<FraisHorsForfait> getLesFraisHorsForfaitValides(String id, String mois) {
+		connexionBDD();
+		ArrayList<FraisHorsForfait> lesFrais = new ArrayList<FraisHorsForfait>();
+		try {
+			String req = "SELECT * FROM gsb_lignefraishorsforfait WHERE etat = '1' AND idVisiteur = ? AND mois = ?";
+			pst = connexion.prepareStatement(req);
+			pst.setString(1, id);
+			pst.setString(2, mois);
+			rs = pst.executeQuery();
+			FraisHorsForfait unFrais;
+			while(rs.next()){
+				unFrais = new FraisHorsForfait(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7));
+				lesFrais.add(unFrais);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return lesFrais;
+
+	}
+	
+	/**
+	 * Récupère et retourne la liste des montants frais forfait
+	 * 
+	 * @return lesMontants
+	 */
+	public static ArrayList<Double> getLesMontantsFraisForfait() {
+		connexionBDD();
+		Statement stm;
+		ResultSet rst;
+		ArrayList<Double> lesMontants = new ArrayList<Double>();
+		try {
+			String req = "SELECT montant FROM gsb_fraisforfait";
+			stm = connexion.createStatement();
+			rst = stm.executeQuery(req);
+			while(rst.next()) {
+				lesMontants.add(rst.getDouble(1));
+			}
+			rst.close();
+			stm.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		deconnexionBDD();
+		return lesMontants;
 	}
 
 }
