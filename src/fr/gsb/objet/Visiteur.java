@@ -27,6 +27,7 @@ public class Visiteur {
 		this.setVille(ville);
 		this.setDateEmbauche(date);
 		this.setLesFicheFrais(new ArrayList<FicheFrais>());
+		
 	}
 
 	public String getId() {

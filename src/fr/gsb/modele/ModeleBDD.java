@@ -101,6 +101,28 @@ public class ModeleBDD {
 		deconnexionBDD();
 		return lesVisiteurs;
 	}
+	
+	public static ArrayList<FicheFrais> initLesFichesFrais() {
+		connexionBDD();
+		ArrayList<FicheFrais> lesFicheFrais = new ArrayList<FicheFrais>();
+		try {
+			String req = "SELECT * FROM gsb_FicheFrais";
+			st = connexion.createStatement();
+			rs = st.executeQuery(req);
+			FicheFrais unFicheFrais;
+			while(rs.next()){
+				unFicheFrais = new FicheFrais(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6));
+				lesFicheFrais.add(unFicheFrais);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		deconnexionBDD();
+		return lesFicheFrais;
+	}
 
 	/**
 	 * Permet d'effectuer les liens objet entre les fiches frais et les visiteurs
@@ -255,7 +277,7 @@ public class ModeleBDD {
 			}
 
 			rs.close();
-			st.close();
+			pst.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

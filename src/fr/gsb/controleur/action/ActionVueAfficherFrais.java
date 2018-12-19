@@ -134,7 +134,7 @@ public class ActionVueAfficherFrais implements ActionListener{
 			unNewModelFicheFrais.addColumn("NbJustificatifs");
 			unNewModelFicheFrais.addColumn("MontantValide");
 			unNewModelFicheFrais.addColumn("DateModif");
-			unNewModelFicheFrais.addColumn("Etat");
+			unNewModelFicheFrais.addColumn("etat");
 			donneesFicheFrais = new Object[4];
 			
 			for (FicheFrais unFicheFrais : lesFicheFrais) {
