@@ -16,6 +16,8 @@ public class TestVueMessage {
 
 	@Test
 	public void testAddLabel() {
+		this.vue.addLabelValider("une chaine censé disparaitre");
+		this.vue.reset();
 		Assert.assertEquals(this.vue.getText(), "<html>");
 	}
 
