@@ -58,9 +58,7 @@ public class Gsb {
 	public FicheFrais getUneFicheFrais(String mois, String id) {
 		int i = 0;
 		FicheFrais fiche = null;
-		System.out.println("mm "+mois+" "+id+" "+ this.lesFichesFrais.size());
 		while(i < this.lesFichesFrais.size() && !this.lesFichesFrais.get(i).getMois().equals(mois) || !this.lesFichesFrais.get(i).getId().equals(id)) {
-			System.out.println(this.lesFichesFrais.get(i).getMois() + " - " + this.lesFichesFrais.get(i).getId());
 			i++;
 		}
 		if(i < this.lesFichesFrais.size() && this.lesFichesFrais.get(i).getMois().equals(mois) && this.lesFichesFrais.get(i).getId().equals(id)) {
